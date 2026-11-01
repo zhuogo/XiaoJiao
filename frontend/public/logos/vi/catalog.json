@@ -1,0 +1,30 @@
+[
+  {
+    "id": "draftgo",
+    "name": "DraftGo · 完整 VI 展板",
+    "stem": "draftgo-vi",
+    "width": 2400,
+    "height": 3400
+  },
+  {
+    "id": "routergo",
+    "name": "RouterGo · 完整 VI 展板",
+    "stem": "routergo-vi",
+    "width": 2400,
+    "height": 3400
+  },
+  {
+    "id": "selfgo",
+    "name": "SelfGo · 完整 VI 展板",
+    "stem": "selfgo-vi",
+    "width": 2400,
+    "height": 3400
+  },
+  {
+    "id": "benchgo",
+    "name": "BenchGo · 完整 VI 展板",
+    "stem": "benchgo-vi",
+    "width": 2400,
+    "height": 3400
+  }
+]

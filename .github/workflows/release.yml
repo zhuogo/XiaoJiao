@@ -1,0 +1,36 @@
+name: Publish versioned VI delivery
+on:
+  push:
+    tags: ['vi-v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate package integrity
+        run: python scripts/check_distribution.py
+      - name: Prepare release files
+        shell: bash
+        run: |
+          mkdir release
+          cp frontend/public/logos/vi/*-vi-assets.zip release/
+          cp frontend/public/logos/vi/*-vi-guidelines.pdf release/
+          cp frontend/public/logos/vi/delivery-catalog.json release/
+          cp frontend/public/vi-manifest.json release/
+          cp BRAND-USAGE.md release/
+          (cd release && sha256sum *.zip *.pdf *.json BRAND-USAGE.md > SHA256SUMS.txt)
+      - name: Publish versioned package files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          gh release create "$RELEASE_TAG" release/* \
+            --verify-tag --title "XiaoJiao VI $RELEASE_TAG" \
+            --notes "Four complete digital-product VI packages and six-page guidelines. See BRAND-USAGE.md for usage boundaries. This release does not grant a trademark license. Pin this tag or a commit SHA when consuming repository files."

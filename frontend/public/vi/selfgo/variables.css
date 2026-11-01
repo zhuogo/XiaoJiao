@@ -1,0 +1,21 @@
+:root {
+  --selfgo-primary: #265B4C;
+  --selfgo-accent: #80A68C;
+  --selfgo-paper: #F1F3E7;
+  --selfgo-surface: #E6EDE3;
+  --selfgo-ink: #193E33;
+  --selfgo-onPrimary: #FFFFFF;
+  --selfgo-font: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  --selfgo-display-size: 48px;
+  --selfgo-display-line-height: 1.2;
+  --selfgo-display-weight: 600;
+  --selfgo-heading-size: 32px;
+  --selfgo-heading-line-height: 1.3;
+  --selfgo-heading-weight: 600;
+  --selfgo-body-size: 16px;
+  --selfgo-body-line-height: 1.6;
+  --selfgo-body-weight: 400;
+  --selfgo-caption-size: 14px;
+  --selfgo-caption-line-height: 1.5;
+  --selfgo-caption-weight: 400;
+}

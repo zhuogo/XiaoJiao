@@ -1,0 +1,23 @@
+{
+  "svg_files_valid": 28,
+  "png_files_valid": 53,
+  "expression_count": 12,
+  "animated_expression_count": 8,
+  "full_board_size": [
+    3840,
+    6480
+  ],
+  "transparent_master": true,
+  "body_outline": false,
+  "wink": "left open / right <",
+  "generated_display_model_requested": "gpt-image-2.5",
+  "image_generation_mode": "imagegen CLI API edit",
+  "vi_board_page_background": "#FFFFFF",
+  "brand_application_background": "#C8CAC7",
+  "vi_board_card_background": "#FFFFFF",
+  "production_sync_date": "2026-10-20",
+  "production_synced_files": 96,
+  "production_assets_match_approved": true,
+  "production_app_avatar_background": "#C8CAC7",
+  "release": "current"
+}

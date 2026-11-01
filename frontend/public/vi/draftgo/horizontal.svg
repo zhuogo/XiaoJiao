@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="480" viewBox="0 0 1440 480"><title>horizontal-color</title><svg xmlns="http://www.w3.org/2000/svg" width="480" height="340" viewBox="57.0 111.0 729.0 495.0" x="60" y="70" preserveAspectRatio="xMidYMid meet"><title>DraftGo — 小角 · 系统环绕</title><defs><linearGradient id="art-1-draftgo-ring-gradient" gradientUnits="userSpaceOnUse" x1="300" y1="40" x2="300" y2="340"><stop offset="0" stop-color="#B8CEF5" /><stop offset="0.5" stop-color="#6187EF" /><stop offset="1" stop-color="#244DE0" /></linearGradient></defs>
+<g filter="url(#art-1-go-soft-shadow)" data-effect="soft-shadow"><g transform="translate(120 160)">
+  <ellipse cx="300" cy="190" rx="370" ry="150" transform="rotate(-28 300 190)" fill="none" stroke="url(#art-1-draftgo-ring-gradient)" stroke-width="17" />
+  <path d="M95 0H505A95 95 0 0 1 600 95V285A95 95 0 0 1 505 380H95A95 95 0 0 1 0 285V95A95 95 0 0 1 95 0Z" fill="#F1F5FF" />
+  <path d="M410 380H505A95 95 0 0 0 600 285V190Z" fill="#5075E4" />
+  <g fill="#2346AA"><rect x="123" y="125" width="90" height="130" rx="45" /><rect x="261" y="125" width="90" height="130" rx="45" /></g>
+  <path d="M-70 190A370 150 0 0 0 670 190" transform="rotate(-28 300 190)" fill="none" stroke="url(#art-1-draftgo-ring-gradient)" stroke-width="17" stroke-linecap="round" />
+  <rect x="598" y="77" width="46" height="46" rx="11" transform="rotate(-28 621 100)" fill="#EE9853" />
+</g></g><defs><filter id="art-1-go-soft-shadow" x="-15%" y="-20%" width="130%" height="145%" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#1F2925" flood-opacity="0.10" /></filter></defs></svg><text x="610" y="285" font-family="Segoe UI, Microsoft YaHei, sans-serif" font-size="140" font-weight="600" fill="#244DE0">DraftGo</text></svg>

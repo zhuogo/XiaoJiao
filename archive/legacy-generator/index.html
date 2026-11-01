@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小角生成器</title>
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --page: #F7F6F2;
+    --tile: #C8CAC7;
+    --ink: #222222;
+    --ink-2: #6F6F69;
+    --hairline: #E9E6DF;
+    --accent-ui: #D44A36;
+    --cream: #F3EBDF;
+    --wash: #FAF8F4;
+    --shadow: 0 14px 36px rgba(37, 40, 37, .10);
+    --r-tile: 14px;
+    --r-card: 20px;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--page); }
+  body {
+    margin: 0; padding: 20px 24px 40px; color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  }
+  a { color: inherit; }
+
+  /* 品牌条 */
+  .brand {
+    max-width: 1160px; margin: 0 auto 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand-left { display: flex; align-items: center; gap: 14px; }
+  .brand-mark { width: 58px; height: 42px; display: block; }
+  .brand-mark svg { display: block; width: 100%; height: 100%; }
+  h1 { margin: 0; font-size: 22px; letter-spacing: .5px; display: flex; align-items: center; gap: 12px; }
+  h1 b { font-weight: 800; }
+  h1 .vbar { width: 1px; height: 20px; background: var(--ink); opacity: .35; }
+  h1 span { font-weight: 700; }
+  .brand-right { font-size: 12px; color: var(--ink-2); text-align: right; line-height: 1.7; }
+  .brand-right b { color: var(--ink); font-weight: 700; }
+
+  /* 主布局 */
+  .app {
+    max-width: 1160px; margin: 0 auto; display: grid;
+    grid-template-columns: minmax(0, 1fr) 440px; gap: 20px; align-items: start;
+  }
+  @media (max-width: 960px) { .app { grid-template-columns: 1fr; } }
+
+  /* 预览卡 */
+  .stage-card {
+    background: var(--paper); border-radius: var(--r-card); padding: 18px;
+    box-shadow: var(--shadow); position: sticky; top: 16px;
+  }
+  .stage-base {
+    border-radius: 16px; overflow: hidden; aspect-ratio: 780 / 560;
+    display: flex; align-items: center; justify-content: center;
+    transition: background-color .2s ease;
+  }
+  .stage-base.tex {
+    background-image: radial-gradient(rgba(34, 34, 34, .045) 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+  .stage-base svg { display: block; width: 100%; height: 100%; }
+  .stage-meta {
+    margin-top: 12px; display: flex; align-items: center; gap: 10px;
+    font-size: 12px; color: var(--ink-2);
+  }
+  .stage-meta .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .stage-meta .dim { font-variant-numeric: tabular-nums; }
+
+  /* 控制面板 */
+  .panel { display: flex; flex-direction: column; gap: 16px; }
+  .block {
+    background: var(--paper); border-radius: var(--r-card); padding: 16px 18px 18px;
+    box-shadow: var(--shadow);
+  }
+  .block > h2 {
+    margin: 0 0 12px; font-size: 13px; font-weight: 700; letter-spacing: 1px;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .block > h2 small { font-size: 11px; font-weight: 400; color: var(--ink-2); letter-spacing: 0; }
+  .block > h2 .clear-deco { margin-left: auto; padding: 4px 9px; font-size: 10px; font-weight: 400; }
+  .group-label { font-size: 11px; font-weight: 700; color: var(--ink-2); margin: 12px 0 8px; letter-spacing: 1px; }
+  .group-label:first-child { margin-top: 0; }
+
+  /* 瓦片选择器 */
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .tile {
+    appearance: none; border: none; padding: 0; background: none; cursor: pointer;
+    font-family: inherit; text-align: center;
+  }
+  .tile .art {
+    display: block; border-radius: var(--r-tile); background: var(--tile);
+    padding: 6%; transition: transform .18s cubic-bezier(.16, 1, .3, 1), box-shadow .18s ease, outline-color .12s ease;
+    outline: 2px solid transparent; outline-offset: 2px;
+  }
+  .tile .art svg { display: block; width: 100%; height: auto; }
+  .tile .name {
+    display: block; margin-top: 6px; font-size: 11px; color: var(--ink-2); line-height: 1;
+  }
+  .tile:hover .art { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(37, 40, 37, .14); }
+  .tile:active .art { transform: scale(.97); }
+  .tile.on .art { outline-color: var(--ink); }
+  .tile.on .name { color: var(--ink); font-weight: 700; }
+
+  /* 配色卡与自定义取色 */
+  .colorways { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .colorway {
+    appearance: none; border: none; padding: 0; background: none; cursor: pointer; font-family: inherit;
+  }
+  .colorway .sw {
+    display: block; border-radius: 12px; overflow: hidden; height: 46px;
+    outline: 2px solid transparent; outline-offset: 2px;
+    transition: transform .18s cubic-bezier(.16, 1, .3, 1), outline-color .12s ease;
+    border: 1px solid rgba(34, 34, 34, .08);
+  }
+  .colorway .sw i { display: block; }
+  .colorway .name { display: block; margin-top: 6px; font-size: 11px; color: var(--ink-2); line-height: 1; }
+  .colorway:hover .sw { transform: translateY(-2px); }
+  .colorway.on .sw { outline-color: var(--ink); }
+  .colorway.on .name { color: var(--ink); font-weight: 700; }
+
+  .custom-row {
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--hairline);
+    display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap;
+  }
+  .pick { display: flex; flex-direction: column; gap: 5px; }
+  .pick label { font-size: 11px; color: var(--ink-2); line-height: 1; }
+  .pick input[type="color"] {
+    appearance: none; -webkit-appearance: none; width: 40px; height: 32px;
+    border: 1.5px solid var(--hairline); border-radius: 10px; padding: 2px;
+    background: var(--paper); cursor: pointer;
+  }
+  .pick input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+  .pick input[type="color"]::-webkit-color-swatch { border: none; border-radius: 7px; }
+  .pick input[type="color"]::-moz-color-swatch { border: none; border-radius: 7px; }
+  .btn.mini {
+    border-radius: 999px; padding: 7px 12px; font-size: 11px;
+    background: var(--paper); color: var(--ink); border: 1.5px solid var(--hairline);
+    appearance: none; cursor: pointer; font-family: inherit;
+  }
+  .btn.mini:hover { border-color: var(--ink); }
+  .custom-hint { margin-top: 10px; font-size: 11px; color: var(--ink-2); }
+
+  /* 操作 */
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .btn {
+    appearance: none; border: none; cursor: pointer; font-family: inherit;
+    border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 700;
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+  }
+  .btn:active { transform: translateY(1px) scale(.98); }
+  .btn.primary { background: var(--accent-ui); color: #fff; box-shadow: 0 6px 16px rgba(212, 74, 54, .28); }
+  .btn.primary:hover { filter: brightness(1.05); }
+  .btn.ghost { background: var(--paper); color: var(--ink); border: 1.5px solid var(--hairline); font-weight: 400; }
+  .btn.ghost:hover { border-color: var(--ink); }
+  .btn.text { background: none; color: var(--ink-2); font-weight: 400; padding: 10px 8px; }
+  .btn.text:hover { color: var(--ink); }
+  .hint { margin-top: 10px; font-size: 11px; color: var(--ink-2); }
+  #warn:empty { display: none; }
+  #warn {
+    margin-top: 10px; font-size: 12px; line-height: 1.6; color: #7a5b16;
+    background: #FBF3DC; border-radius: 10px; padding: 8px 12px;
+  }
+  .export-status { min-height: 18px; margin-top: 8px; font-size: 11px; color: var(--ink-2); }
+  .export-status.ok { color: #39704b; }
+  .export-status.error { color: #9a3d2d; }
+  details.rules { margin-top: 12px; font-size: 12px; color: var(--ink-2); }
+  details.rules summary { cursor: pointer; font-size: 11px; letter-spacing: 1px; color: var(--ink-2); }
+  details.rules p { margin: 8px 0 0; line-height: 1.9; }
+
+  footer {
+    max-width: 1160px; margin: 26px auto 0; font-size: 11.5px; color: var(--ink-2);
+  }
+  footer a { text-underline-offset: 3px; }
+  footer code { font-family: ui-monospace, Consolas, monospace; font-size: 11px; }
+
+  /* 图层进入动效 */
+  @keyframes layerIn { from { opacity: 0; transform: scale(.9); } to { opacity: 1; transform: scale(1); } }
+  svg g.anim { animation: layerIn .18s cubic-bezier(.16, 1, .3, 1) both; transform-box: fill-box; transform-origin: center; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="brand">
+  <div class="brand-left">
+    <span class="brand-mark" id="brandMark" aria-hidden="true"></span>
+    <h1><b>小角</b><i class="vbar"></i><span>生成器</span></h1>
+  </div>
+  <div class="brand-right" id="comboCount"></div>
+</header>
+
+<main class="app">
+  <section class="stage-card">
+    <div class="stage-base" id="stageBase"></div>
+    <div class="stage-meta">
+      <span class="name" id="filename"></span>
+      <button class="btn text" id="texToggle" style="padding:2px 6px;font-size:11px">底纹</button>
+      <span class="dim">780 × 560</span>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <section class="block">
+      <h2>表情 <small>必选</small></h2>
+      <div class="tiles" id="exprTiles"></div>
+    </section>
+
+    <section class="block">
+      <h2>装饰 <small>同一挂点单选</small><button class="btn mini clear-deco" id="btnClearDeco" type="button">清空装饰</button></h2>
+      <div id="decoGroups"></div>
+    </section>
+
+    <section class="block">
+      <h2>配色 <small>体色、切角、眼睛均可换</small></h2>
+      <div class="colorways" id="colorwayCards"></div>
+      <div class="custom-row">
+        <div class="pick"><label>身体</label><input type="color" id="pickBody" value="#F3EBDF"></div>
+        <div class="pick"><label>切角</label><input type="color" id="pickCorner" value="#D44A36"></div>
+        <div class="pick"><label>眼睛</label><input type="color" id="pickInk" value="#222222"></div>
+        <div class="pick"><label>点缀</label><input type="color" id="pickAccent" value="#6EC6E8"></div>
+        <div class="pick"><label>背景</label><input type="color" id="pickScene" value="#C8CAC7"></div>
+        <button class="btn mini" id="btnClearScene">透明背景</button>
+      </div>
+      <div class="custom-hint">改动任意取色即进入自定义配色，选择上方色板可一键回到成套配色。</div>
+    </section>
+
+    <section class="block">
+      <div class="actions">
+        <button class="btn primary" id="btnSvg">导出 SVG</button>
+        <button class="btn ghost" data-png="1024">PNG 1024</button>
+        <button class="btn ghost" data-png="512">PNG 512</button>
+        <button class="btn ghost" data-png="240">PNG 240</button>
+        <button class="btn ghost" id="btnRandom" title="快捷键 R">随机组合</button>
+        <button class="btn text" id="btnReset">重置</button>
+      </div>
+      <div id="warn"></div>
+      <div class="export-status" id="exportStatus" role="status" aria-live="polite"></div>
+      <details class="rules">
+        <summary>组合规则</summary>
+        <p>
+          切角保护区禁入（D-1）；眼部仅眼镜类可覆盖（D-2、D-3）；内容不出画布安全区（D-4）；
+          同一挂点一次只挂一件（C-1）。配色守恒：切角的形状不可遮挡，颜色自由；
+          眼睛换色会联动眨眼、墨镜、泪滴与爱心眼；对比度过低的组合会给出提示。
+        </p>
+      </details>
+    </section>
+  </aside>
+</main>
+
+<footer>
+  规范与拆解体系见 <a href="Design/README.md">Design/</a>　素材库 <a href="小角IP/README.md">小角IP/</a>　表情由 <code>scripts/extract_expressions.py</code> 逐字节校验后注入
+</footer>
+
+<script>
+// ==================== 注入数据区 ====================
+<!-- DATA:EXPRESSIONS BEGIN -->
+window.EXPRESSIONS = {
+  "generator": "extract_expressions.py",
+  "expressions": [
+    {
+      "id": "expr-01-standard",
+      "no": 1,
+      "name": "标准",
+      "source": "小角IP/04-表情包/SVG/sticker-01-standard.svg",
+      "fragment": "<rect x=\"123.0\" y=\"125.0\" width=\"90\" height=\"130\" rx=\"45\" fill=\"#222222\" /><rect x=\"261.0\" y=\"125.0\" width=\"90\" height=\"130\" rx=\"45\" fill=\"#222222\" />"
+    },
+    {
+      "id": "expr-02-happy",
+      "no": 2,
+      "name": "开心",
+      "source": "小角IP/04-表情包/SVG/sticker-02-happy.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M136 201Q168 135 200 201\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M274 201Q306 135 338 201\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g>"
+    },
+    {
+      "id": "expr-03-wink",
+      "no": 3,
+      "name": "眨眼",
+      "source": "小角IP/04-表情包/SVG/sticker-03-wink.svg",
+      "fragment": "<rect x=\"123.0\" y=\"125.0\" width=\"90\" height=\"130\" rx=\"45\" fill=\"#222222\" /><path d=\"M338 151 L281 190 L338 229\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />"
+    },
+    {
+      "id": "expr-04-laugh",
+      "no": 4,
+      "name": "大笑",
+      "source": "小角IP/04-表情包/SVG/sticker-04-laugh.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M132 207Q168 115 204 207\" fill=\"none\" stroke=\"#222222\" stroke-width=\"22\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M270 207Q306 115 342 207\" fill=\"none\" stroke=\"#222222\" stroke-width=\"22\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g>"
+    },
+    {
+      "id": "expr-05-cry",
+      "no": 5,
+      "name": "哭",
+      "source": "小角IP/04-表情包/SVG/sticker-05-cry.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M134 158L198 176V 205Q198 233 168 233Q138 233 138 205Z\" fill=\"#222222\" /><path d=\"M168 226Q141 251 151 266Q168 286 185 266Q195 251 168 226Z\" fill=\"#6EC6E8\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M276 176L340 158L336 205Q336 233 306 233Q276 233 276 205Z\" fill=\"#222222\" /><path d=\"M306 226Q279 251 289 266Q306 286 323 266Q333 251 306 226Z\" fill=\"#6EC6E8\" /></g>"
+    },
+    {
+      "id": "expr-06-angry",
+      "no": 6,
+      "name": "生气",
+      "source": "小角IP/04-表情包/SVG/sticker-06-angry.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M130 153L204 179V 208Q196 241 168 236Q134 235 134 207Z\" fill=\"#222222\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M270 179L344 153L340 207Q340 235 306 236Q278 241 270 208Z\" fill=\"#222222\" /></g>"
+    },
+    {
+      "id": "expr-07-wow",
+      "no": 7,
+      "name": "惊讶",
+      "source": "小角IP/04-表情包/SVG/sticker-07-wow.svg",
+      "fragment": "<circle cx=\"168\" cy=\"190\" r=\"52\" fill=\"#222222\" /><circle cx=\"306\" cy=\"190\" r=\"52\" fill=\"#222222\" />"
+    },
+    {
+      "id": "expr-08-love",
+      "no": 8,
+      "name": "爱心眼",
+      "source": "小角IP/04-表情包/SVG/sticker-08-love.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M168 224C150 207 120 182 134 161C145 144 161 151 168 163C175 151 191 144 202 161C216 182 186 207 168 224Z\" fill=\"#D44A36\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M306 224C288 207 258 182 272 161C283 144 299 151 306 163C313 151 329 144 340 161C354 182 324 207 306 224Z\" fill=\"#D44A36\" /></g>"
+    },
+    {
+      "id": "expr-09-sleepy",
+      "no": 9,
+      "name": "困",
+      "source": "小角IP/04-表情包/SVG/sticker-09-sleepy.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M132 189H204Q202 229 168 229Q134 229 132 189Z\" fill=\"#222222\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M270 189H342Q340 229 306 229Q272 229 270 189Z\" fill=\"#222222\" /></g>"
+    },
+    {
+      "id": "expr-10-cool",
+      "no": 10,
+      "name": "酷",
+      "source": "小角IP/04-表情包/SVG/sticker-10-cool.svg",
+      "fragment": "<g transform=\"translate(237 190) scale(1.1538461538461537 1.1504424778761062) translate(-237 -190)\"><rect x=\"113\" y=\"148\" width=\"248\" height=\"16\" rx=\"6\" fill=\"#222222\" /><path d=\"M121 158H226V183Q226 224 177 224Q128 224 125 183Z\" fill=\"#222222\" /><path d=\"M248 158H353L349 183Q346 224 300 224Q251 224 248 183Z\" fill=\"#222222\" /><rect x=\"219\" y=\"165\" width=\"37\" height=\"12\" rx=\"5\" fill=\"#222222\" /></g>"
+    },
+    {
+      "id": "expr-11-dizzy",
+      "no": 11,
+      "name": "晕",
+      "source": "小角IP/04-表情包/SVG/sticker-11-dizzy.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M172.00 190.00L172.22 190.56L172.36 191.17L172.41 191.83L172.36 192.52L172.20 193.22L171.92 193.92L171.54 194.61L171.03 195.25L170.42 195.84L169.70 196.36L168.89 196.78L168.00 197.10L167.04 197.30L166.03 197.36L164.99 197.28L163.93 197.04L162.89 196.66L161.88 196.12L160.93 195.42L160.06 194.58L159.29 193.61L158.65 192.51L158.14 191.30L157.80 190.00L157.63 188.63L157.65 187.23L157.86 185.80L158.27 184.38L158.88 183.00L159.69 181.69L160.69 180.47L161.87 179.38L163.21 178.43L164.69 177.65L166.30 177.07L168.00 176.70L169.77 176.56L171.58 176.65L173.39 177.00L175.17 177.59L176.88 178.42L178.50 179.50L179.99 180.80L181.31 182.32L182.44 184.02L183.34 185.89L184.00 187.89L184.40 190.00L184.52 192.17L184.34 194.38L183.87 196.57L183.10 198.72L182.04 200.77L180.69 202.69L179.08 204.45L177.23 205.99L175.17 207.30L172.91 208.34L170.51 209.08L168.00 209.50L165.42 209.59L162.82 209.33L160.24 208.73L157.73 207.78L155.34 206.50L153.12 204.88L151.09 202.97L149.32 200.78L147.84 198.35L146.67 195.72L145.85 192.92L145.40 190.00L145.34 187.02L145.67 184.02L146.40 181.05L147.53 178.18L149.05 175.46L150.92 172.92L153.14 170.64L155.67 168.64L158.46 166.97L161.48 165.67L164.68 164.78L168.00 164.30L171.39 164.26L174.79 164.68L178.13 165.54L181.37 166.85L184.43 168.59L187.27 170.73L189.82 173.25L192.05 176.12L193.89 179.28L195.32 182.68L196.30 186.27L196.80 190.00L196.81 193.79L196.32 197.59L195.32 201.32L193.84 204.92L191.87 208.32L189.46 211.46L186.63 214.28L183.43 216.73L179.91 218.76L176.12 220.31L172.13 221.37L168.00 221.90L163.80 221.88L159.61 221.31L155.50 220.19L151.53 218.52L147.79 216.33L144.35 213.65L141.26 210.52L138.58 206.98L136.38 203.10L134.69 198.92L133.56 194.53L133.00 190.00\" fill=\"none\" stroke=\"#222222\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M310.00 190.00L310.22 190.56L310.36 191.17L310.41 191.83L310.36 192.52L310.20 193.22L309.92 193.92L309.54 194.61L309.03 195.25L308.42 195.84L307.70 196.36L306.89 196.78L306.00 197.10L305.04 197.30L304.03 197.36L302.99 197.28L301.93 197.04L300.89 196.66L299.88 196.12L298.93 195.42L298.06 194.58L297.29 193.61L296.65 192.51L296.14 191.30L295.80 190.00L295.63 188.63L295.65 187.23L295.86 185.80L296.27 184.38L296.88 183.00L297.69 181.69L298.69 180.47L299.87 179.38L301.21 178.43L302.69 177.65L304.30 177.07L306.00 176.70L307.77 176.56L309.58 176.65L311.39 177.00L313.17 177.59L314.88 178.42L316.50 179.50L317.99 180.80L319.31 182.32L320.44 184.02L321.34 185.89L322.00 187.89L322.40 190.00L322.52 192.17L322.34 194.38L321.87 196.57L321.10 198.72L320.04 200.77L318.69 202.69L317.08 204.45L315.23 205.99L313.17 207.30L310.91 208.34L308.51 209.08L306.00 209.50L303.42 209.59L300.82 209.33L298.24 208.73L295.73 207.78L293.34 206.50L291.12 204.88L289.09 202.97L287.32 200.78L285.84 198.35L284.67 195.72L283.85 192.92L283.40 190.00L283.34 187.02L283.67 184.02L284.40 181.05L285.53 178.18L287.05 175.46L288.92 172.92L291.14 170.64L293.67 168.64L296.46 166.97L299.48 165.67L302.68 164.78L306.00 164.30L309.39 164.26L312.79 164.68L316.13 165.54L319.37 166.85L322.43 168.59L325.27 170.73L327.82 173.25L330.05 176.12L331.89 179.28L333.32 182.68L334.30 186.27L334.80 190.00L334.81 193.79L334.32 197.59L333.32 201.32L331.84 204.92L329.87 208.32L327.46 211.46L324.63 214.28L321.43 216.73L317.91 218.76L314.12 220.31L310.13 221.37L306.00 221.90L301.80 221.88L297.61 221.31L293.50 220.19L289.53 218.52L285.79 216.33L282.35 213.65L279.26 210.52L276.58 206.98L274.38 203.10L272.69 198.92L271.56 194.53L271.00 190.00\" fill=\"none\" stroke=\"#222222\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g>"
+    },
+    {
+      "id": "expr-12-cheer",
+      "no": 12,
+      "name": "欢呼",
+      "source": "小角IP/04-表情包/SVG/sticker-12-cheer.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M138 207L168 162L198 207\" fill=\"none\" stroke=\"#222222\" stroke-width=\"19\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M276 207L306 162L336 207\" fill=\"none\" stroke=\"#222222\" stroke-width=\"19\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g>"
+    }
+  ]
+}
+<!-- DATA:EXPRESSIONS END -->
+<!-- DATA:GEOMETRY BEGIN -->
+window.GEOMETRY = {
+  "body": [
+    600,
+    380
+  ],
+  "body_radius": 95,
+  "eye_size": [
+    90,
+    130
+  ],
+  "eye_radius": 45,
+  "eye_centers": [
+    [
+      168,
+      190
+    ],
+    [
+      306,
+      190
+    ]
+  ],
+  "eye_distance": 138,
+  "eye_gap": 48,
+  "corner": [
+    [
+      410,
+      380
+    ],
+    [
+      600,
+      190
+    ]
+  ],
+  "safe_margin": 90,
+  "app_body_width_ratio": 0.74,
+  "avatar_body_width_ratio": 0.74,
+  "app_background_radius_ratio": 0.2197265625,
+  "small_icon_eye_radius": 45,
+  "colors": {
+    "body": "#F3EBDF",
+    "ink": "#222222",
+    "corner": "#D44A36",
+    "app_bg": "#C8CAC7",
+    "expression_blue": "#6EC6E8",
+    "primary_background": "#C8CAC7",
+    "auxiliary_background": "#EDE4D3",
+    "panel": "#FFFFFF",
+    "vi_page_background": "#FFFFFF",
+    "vi_card_background": "#FFFFFF"
+  },
+  "release": "current",
+  "updated": "2026-10-20",
+  "outline": false,
+  "shadow": {
+    "color": "#252825",
+    "offset_y": 8,
+    "blur_std_deviation": 12,
+    "opacity": 0.14,
+    "contact": {
+      "offset_y": 2,
+      "blur_std_deviation": 2.5,
+      "opacity": 0.045
+    }
+  },
+  "wink": {
+    "left": "standard_open",
+    "right_path": "M338 151 L281 190 L338 229",
+    "stroke_width": 17,
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round"
+  },
+  "effective_date": "2026-10-20"
+}
+<!-- DATA:GEOMETRY END -->
+
+// ==================== 原创表情扩展（v0.4，规范见 Design/03-表情模块） ====================
+// 与素材表情同一语言：17 宽圆端笔画、无嘴无眉无眼白、情绪只在眼睛。
+// 原色书写（#222222/#D44A36/#6EC6E8），由 normalizeFragments 统一令牌化。
+const EXTRA_EXPRESSIONS = [
+  { id: "expr-13-star", no: 13, name: "闪闪", source: "原创 v0.4",
+    fragment: `<g transform="translate(168 190)"><path d="M0 -58C6 -20 20 -6 58 0C20 6 6 20 0 58C-6 20 -20 6 -58 0C-20 -6 -6 -20 0 -58Z" fill="#D44A36"/></g><g transform="translate(306 190)"><path d="M0 -58C6 -20 20 -6 58 0C20 6 6 20 0 58C-6 20 -20 6 -58 0C-20 -6 -6 -20 0 -58Z" fill="#D44A36"/></g>` },
+  { id: "expr-14-sideeye", no: 14, name: "斜眼", source: "原创 v0.4",
+    fragment: `<path d="M218 156L294 184V217A38 38 0 0 1 218 217Z" fill="#222222" /><path d="M356 156L432 184V217A38 38 0 0 1 356 217Z" fill="#222222" />` },
+  { id: "expr-15-flat", no: 15, name: "无语", source: "原创 v0.4",
+    fragment: `<g transform="translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)"><path d="M128 190 H208" fill="none" stroke="#222222" stroke-width="17" stroke-linecap="round" /></g><g transform="translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)"><path d="M266 190 H346" fill="none" stroke="#222222" stroke-width="17" stroke-linecap="round" /></g>` },
+  { id: "expr-16-shy", no: 16, name: "害羞", source: "原创 v0.4",
+    fragment: `<g transform="translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)"><path d="M136 196Q168 228 200 196" fill="none" stroke="#222222" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" /></g><g transform="translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)"><path d="M274 196Q306 228 338 196" fill="none" stroke="#222222" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" /></g><ellipse cx="168" cy="249" rx="28" ry="18" fill="{{blush}}" /><ellipse cx="306" cy="249" rx="28" ry="18" fill="{{blush}}" />` },
+  { id: "expr-17-smug", no: 17, name: "得意", source: "原创 v0.4",
+    fragment: `<g transform="translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)"><path d="M206 206Q164 160 132 172Q122 172 126 156" fill="none" stroke="#222222" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" /></g><g transform="translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)"><path d="M268 206Q310 160 342 172Q352 172 348 156" fill="none" stroke="#222222" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" /></g>` },
+  { id: "expr-18-scare", no: 18, name: "惊恐", source: "原创 v0.4",
+    fragment: `<circle cx="168" cy="190" r="60" fill="#222222" /><circle cx="306" cy="190" r="60" fill="#222222" /><path d="M86 58C92.3 70.6 105.8 85 105.8 97.6C105.8 110.2 96.8 119.2 86 119.2C75.2 119.2 66.2 110.2 66.2 97.6C66.2 85 79.7 70.6 86 58Z" fill="{{fluid}}" transform="rotate(-16 86 85)" /><path d="M44 44C48.2 52.4 57.2 62 57.2 70.4C57.2 78.8 51.2 84.8 44 84.8C36.8 84.8 30.8 78.8 30.8 70.4C30.8 62 39.8 52.4 44 44Z" fill="{{fluid}}" transform="rotate(-26 44 62)" /><path d="M388 58C394.3 70.6 407.8 85 407.8 97.6C407.8 110.2 398.8 119.2 388 119.2C377.2 119.2 368.2 110.2 368.2 97.6C368.2 85 381.7 70.6 388 58Z" fill="{{fluid}}" transform="rotate(16 388 85)" /><path d="M430 44C434.2 52.4 443.2 62 443.2 70.4C443.2 78.8 437.2 84.8 430 84.8C422.8 84.8 416.8 78.8 416.8 70.4C416.8 62 425.8 52.4 430 44Z" fill="{{fluid}}" transform="rotate(26 430 62)" />` },
+  { id: "expr-19-pitiful", no: 19, name: "可怜", source: "原创 v0.4",
+    fragment: `<circle cx="168" cy="196" r="56" fill="#222222" /><circle cx="306" cy="196" r="56" fill="#222222" /><ellipse cx="168" cy="246" rx="44" ry="14" fill="{{fluid}}" /><ellipse cx="306" cy="246" rx="44" ry="14" fill="{{fluid}}" />` },
+  { id: "expr-20-stare", no: 20, name: "盯", source: "原创 v0.4",
+    fragment: `<path d="M112 117Q112 99 130 99H206Q224 99 224 117V225A56 56 0 0 1 112 225Z" fill="#222222"/><path d="M250 117Q250 99 268 99H344Q362 99 362 117V225A56 56 0 0 1 250 225Z" fill="#222222"/>` },
+  { id: "expr-21-think", no: 21, name: "思考", source: "原创 v0.4",
+    fragment: `<rect x="135" y="85" width="90" height="130" rx="45" fill="#222222" /><rect x="273" y="85" width="90" height="130" rx="45" fill="#222222" /><circle cx="394" cy="94" r="11" fill="#222222" /><circle cx="424" cy="60" r="17" fill="#222222" />` },
+  { id: "expr-22-glee", no: 22, name: "窃喜", source: "原创 v0.4",
+    fragment: `<g transform="translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)"><path d="M134 152 L202 190 L134 228" fill="none" stroke="#222222" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" /></g><g transform="translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)"><path d="M336 152 L268 190 L336 228" fill="none" stroke="#222222" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" /></g><ellipse cx="158" cy="270" rx="19" ry="12" fill="{{blush}}" /><ellipse cx="316" cy="270" rx="19" ry="12" fill="{{blush}}" />` },
+];
+EXPRESSIONS.expressions = [...(EXPRESSIONS.expressions || []), ...EXTRA_EXPRESSIONS]
+  .sort((a, b) => a.no - b.no);
+
+// ==================== 装饰库 v2（规范见 Design/04-装饰模块） ====================
+const DECORATIONS = [
+  { id: "deco-hat-beanie", name: "毛线帽", group: "head-top", covers_eyes: false, bbox: [170, -78, 430, 22],
+    fragment: `<g id="deco-hat-beanie"><path d="M178 4 Q178 -58 300 -58 Q422 -58 422 4 Z" fill="{{corner}}"/><circle cx="300" cy="-65" r="13" fill="{{accent}}"/><rect x="170" y="-8" width="260" height="30" rx="15" fill="{{ink}}"/><path d="M210 -2 V12 M250 -2 V12 M290 -2 V12 M330 -2 V12 M370 -2 V12" stroke="{{body}}" stroke-width="6" stroke-linecap="round" fill="none"/></g>` },
+  { id: "deco-hat-cap", name: "棒球帽", group: "head-top", covers_eyes: false, bbox: [180, -78, 532, 50],
+    fragment: `<g id="deco-hat-cap"><path d="M182 10 A118 88 0 0 1 418 10 Z" fill="{{ink}}"/><path d="M300 -58 V8" stroke="{{body}}" stroke-width="6" stroke-linecap="round" fill="none"/><rect x="390" y="-9" width="144" height="26" rx="13" fill="{{corner}}" transform="rotate(14 390 2)"/><circle cx="300" cy="-69" r="8" fill="{{accent}}"/></g>` },
+  { id: "deco-hat-beret", name: "贝雷帽", group: "head-top", covers_eyes: false, bbox: [117, -78, 393, 8],
+    fragment: `<g id="deco-hat-beret"><ellipse cx="255" cy="-24" rx="138" ry="32" fill="{{ink}}"/><ellipse cx="255" cy="-38" rx="138" ry="38" fill="{{corner}}"/><rect x="248" y="-78" width="14" height="14" rx="7" fill="{{ink}}"/></g>` },
+  { id: "deco-bow", name: "蝴蝶结", group: "head-top", covers_eyes: false, bbox: [352, -62, 524, 24],
+    fragment: `<g id="deco-bow"><path d="M420 -18 Q406 6 396 18 L418 24 Q430 6 436 -14 Z" fill="{{corner}}"/><path d="M456 -18 Q470 6 480 18 L458 24 Q446 6 440 -14 Z" fill="{{corner}}"/><path d="M438 -34 Q400 -62 372 -52 Q352 -44 356 -26 Q360 -8 384 -12 Q418 -18 438 -34 Z" fill="{{corner}}"/><path d="M438 -34 Q476 -62 504 -52 Q524 -44 520 -26 Q516 -8 492 -12 Q458 -18 438 -34 Z" fill="{{corner}}"/><rect x="424" y="-47" width="28" height="27" rx="10" fill="{{ink}}"/></g>` },
+  { id: "deco-hairpin", name: "发夹", group: "head-top", covers_eyes: false, bbox: [112, -38, 260, 20],
+    fragment: `<g id="deco-hairpin"><path d="M120 12 Q186 -60 252 12" fill="none" stroke="{{accent}}" stroke-width="16" stroke-linecap="round"/><circle cx="186" cy="-24" r="12" fill="{{ink}}"/></g>` },
+  { id: "deco-hat-santa", name: "圣诞帽", group: "head-top", covers_eyes: false, bbox: [196, -71, 406, 22],
+    fragment: `<g id="deco-hat-santa"><path d="M202 2 Q236 -44 284 -60 Q298 -66 314 -58 Q352 -40 400 2 Z" fill="{{corner}}"/><circle cx="297" cy="-58" r="13" fill="{{panel}}"/><rect x="196" y="-6" width="210" height="28" rx="14" fill="{{panel}}"/></g>` },
+  { id: "deco-glasses-round", name: "圆框眼镜", group: "eyes", covers_eyes: true, bbox: [12, 103, 373, 278], bboxes: [[12, 103, 373, 278], [12, 158, 541, 194]],
+    fragment: `<g id="deco-glasses-round"><path d="M104 168 Q66 166 44 176" fill="none" stroke="{{ink}}" stroke-width="17" stroke-linecap="round"/><path d="M372 168 Q510 166 532 176" fill="none" stroke="{{ink}}" stroke-width="17" stroke-linecap="round"/><rect x="109" y="111" width="118" height="158" rx="44" fill="none" stroke="{{ink}}" stroke-width="17"/><rect x="247" y="111" width="118" height="158" rx="44" fill="none" stroke="{{ink}}" stroke-width="17"/><path d="M227 176 Q237 162 247 176" fill="none" stroke="{{ink}}" stroke-width="17" stroke-linecap="round"/></g>` },
+  { id: "deco-glasses-sunglasses", name: "墨镜", group: "eyes", covers_eyes: true, bbox: [94, 142, 380, 229],
+    fragment: `<g id="deco-glasses-sunglasses" transform="translate(237 190) scale(1.1538461538461537 1.1504424778761062) translate(-237 -190)"><rect x="113" y="148" width="248" height="16" rx="6" fill="{{ink}}"/><path d="M121 158H226V183Q226 224 177 224Q128 224 125 183Z" fill="{{ink}}"/><path d="M248 158H353L349 183Q346 224 300 224Q251 224 248 183Z" fill="{{ink}}"/><rect x="219" y="165" width="37" height="12" rx="5" fill="{{ink}}"/></g>` },
+  { id: "deco-scarf", name: "披巾", group: "neck", covers_eyes: false, bbox: [2, 0, 154, 120],
+    fragment: `<g id="deco-scarf"><path d="M97 0 L152 0 Q148 62 118 110 Q92 116 64 112 Q30 108 3 98 Q12 14 97 0 Z" fill="{{accent}}"/><path d="M124 16 Q96 60 48 100" fill="none" stroke="{{body}}" stroke-width="8" stroke-linecap="round"/><path d="M142 24 Q118 66 78 106" fill="none" stroke="{{body}}" stroke-width="8" stroke-linecap="round"/></g>` },
+  { id: "deco-love", name: "爱心", group: "float-right", covers_eyes: false, bbox: [420, -78, 520, 10],
+    fragment: `<g id="deco-love" transform="translate(-90 -2)"><path d="M560 -56 C542 -76 510 -68 510 -40 C510 -14 536 -2 560 12 C584 -2 610 -14 610 -40 C610 -68 578 -76 560 -56 Z" fill="{{corner}}"/></g>` },
+  { id: "deco-zzz", name: "梦梦", group: "float-left", covers_eyes: false, bbox: [22, -74, 118, -10],
+    fragment: `<g id="deco-zzz"><path d="M28 -68 H54 L28 -42 H54" fill="none" stroke="{{ink}}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M66 -46 H88 L66 -24 H88" fill="none" stroke="{{ink}}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M98 -30 H114 L98 -14 H114" fill="none" stroke="{{ink}}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></g>` },
+];
+const DECO_GROUPS = [
+  { id: "head-top", label: "头饰" },
+  { id: "eyes", label: "眼部" },
+  { id: "neck", label: "配饰" },
+  { id: "float", label: "漂浮", members: ["float-left", "float-right"] },
+];
+
+// ==================== 配色：8 套Ⅱ级色板 + 自定义（规范见 Design/05-色彩系统） ====================
+// 五元组：body 体色 / corner 切角 / ink 眼睛 / accent 点缀 / scene 背景（null=透明）
+const COLORWAYS = [
+  { id: "original", name: "原味", body: "#F3EBDF", corner: "#D44A36", ink: "#222222", accent: "#6EC6E8", scene: null,      blush: "#E89A8A", fluid: "#6EC6E8", panel: "#2A2A28" },
+  { id: "inkjade",  name: "墨玉", body: "#383833", corner: "#D44A36", ink: "#F3EBDF", accent: "#6EC6E8", scene: "#1E1E1B", blush: "#E89A8A", fluid: "#6EC6E8", panel: "#F3EBDF" },
+  { id: "peach",    name: "蜜桃", body: "#F6D7C3", corner: "#E05A3F", ink: "#3A2E28", accent: "#7FBFA0", scene: "#FFF9F1", blush: "#E07A66", fluid: "#5BA8C9", panel: "#3A2E28" },
+  { id: "matcha",   name: "抹茶", body: "#DCE3C8", corner: "#B85C3A", ink: "#33392B", accent: "#E8A13C", scene: "#FCFDF7", blush: "#D98A80", fluid: "#5B9BB0", panel: "#33392B" },
+  { id: "seasalt",  name: "海盐", body: "#D2E2E5", corner: "#4A7E8C", ink: "#22333A", accent: "#F2B84B", scene: "#F9FCFC", blush: "#E08878", fluid: "#4A8CA8", panel: "#22333A" },
+  { id: "sakura",   name: "樱花", body: "#F7D9DE", corner: "#C25B6E", ink: "#4A2C33", accent: "#8FB7A8", scene: "#FFFBFC", blush: "#D46A6A", fluid: "#5BA8C9", panel: "#4A2C33" },
+  { id: "sunset",   name: "落日", body: "#F5C77E", corner: "#97281B", ink: "#3B2317", accent: "#4A7E8C", scene: "#FBEAD1", blush: "#C25B4A", fluid: "#4A8CA8", panel: "#3B2317" },
+  { id: "nightline",name: "夜线", body: "#262A32", corner: "#6EC6E8", ink: "#E8F4FA", accent: "#F2B84B", scene: "#0E1116", blush: "#E89A8A", fluid: "#7CC4E8", panel: "#E8F4FA" },
+];
+
+// ==================== 组合状态与渲染 ====================
+const state = {
+  expression: "expr-01-standard",
+  decorations: [],
+  palette: { ...COLORWAYS[0] },
+};
+let prev = { expression: "", decorations: [], paletteKey: "" };  // 首帧强制全量填充瓦片
+let texOn = true;
+
+function paletteKey(p) { return [p.body, p.corner, p.ink, p.accent, p.scene].join("|"); }
+
+// 表情片段令牌化：素材中的内容色映射为令牌，随配色联动
+//（#222222 眼睛/笔画、#D44A36 爱心眼、#6EC6E8 泪滴；基板色不经过片段）
+(function normalizeFragments() {
+  for (const e of (EXPRESSIONS.expressions || [])) {
+    e.fragment = e.fragment
+      .split("#222222").join("{{ink}}")
+      .split("#D44A36").join("{{corner}}")
+      .split("#6EC6E8").join("{{accent}}");
+  }
+})();
+
+function tokensOf(st) {
+  const p = st.palette || state.palette;
+  return {
+    ink: p.ink, corner: p.corner, accent: p.accent,
+    body: p.body, scene: p.scene, panel: p.panel || GEOMETRY.colors.panel,
+    blush: p.blush, fluid: p.fluid,
+  };
+}
+function applyTokens(fragment, tok) {
+  let out = fragment;
+  for (const [k, v] of Object.entries(tok)) out = out.split("{{" + k + "}}").join(v);
+  return out;
+}
+function bodyPath() {
+  const [W, H] = GEOMETRY.body, r = GEOMETRY.body_radius;
+  return `M${r} 0H${W - r}A${r} ${r} 0 0 1 ${W} ${r}V${H - r}A${r} ${r} 0 0 1 ${W - r} ${H}H${r}A${r} ${r} 0 0 1 0 ${H - r}V${r}A${r} ${r} 0 0 1 ${r} 0Z`;
+}
+function cornerPath() {
+  const [W, H] = GEOMETRY.body, r = GEOMETRY.body_radius;
+  const [x1, y1] = GEOMETRY.corner[0], y2 = GEOMETRY.corner[1][1];
+  return `M${x1} ${y1}H${W - r}A${r} ${r} 0 0 0 ${W} ${H - r}V${y2}Z`;
+}
+
+function composeSVG(st = state, animateIds = null) {
+  const g = GEOMETRY, tok = tokensOf(st);
+  const sh = g.shadow, parts = [];
+  const wrap = (frag, id) => animateIds && animateIds.has(id) ? `<g class="anim">${frag}</g>` : frag;
+  parts.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 560" width="780" height="560">`);
+  parts.push(`<defs>`
+    + `<filter id="soft-shadow" filterUnits="userSpaceOnUse" x="-80" y="-80" width="760" height="540" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="${sh.blur_std_deviation}"/></filter>`
+    + `<filter id="contact-shadow" filterUnits="userSpaceOnUse" x="-80" y="-80" width="760" height="540" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="${sh.contact.blur_std_deviation}"/></filter>`
+    + `</defs>`);
+  if (tok.scene) parts.push(`<rect x="0" y="0" width="780" height="560" fill="${tok.scene}"/>`);
+  parts.push(`<g transform="translate(90 90)">`);
+  parts.push(`<rect x="0" y="${sh.offset_y}" width="${g.body[0]}" height="${g.body[1]}" rx="${g.body_radius}" fill="${sh.color}" opacity="${sh.opacity}" filter="url(#soft-shadow)"/>`);
+  parts.push(`<rect x="0" y="${sh.contact.offset_y}" width="${g.body[0]}" height="${g.body[1]}" rx="${g.body_radius}" fill="${sh.color}" opacity="${sh.contact.opacity}" filter="url(#contact-shadow)"/>`);
+  parts.push(`<path d="${bodyPath()}" fill="${tok.body}"/>`);
+  parts.push(`<path d="${cornerPath()}" fill="${tok.corner}"/>`);
+  const ex = EXPRESSIONS.expressions.find(e => e.id === st.expression);
+  if (ex) parts.push(wrap(applyTokens(ex.fragment, tok), ex.id));
+  for (const id of st.decorations) {
+    const d = DECORATIONS.find(x => x.id === id);
+    if (d) parts.push(wrap(applyTokens(d.fragment, tok), id));
+  }
+  parts.push(`</g></svg>`);
+  return parts.join("");
+}
+
+// ==================== 禁区与对比度校验（D-1~D-4 + Ⅱ级配色红线） ====================
+const EYE_ZONES = [[123, 125, 213, 255], [261, 125, 351, 255]];
+function cornerZoneHit(b) {
+  const [x1, y1, x2, y2] = b;
+  const inside = (x, y) => x >= 410 && x <= 600 && y >= 190 && y <= 380 && x + y >= 790;
+  if (inside(x1, y1) || inside(x1, y2) || inside(x2, y1) || inside(x2, y2)) return true;
+  for (const [vx, vy] of [[410, 380], [600, 380], [600, 190]])
+    if (vx >= x1 && vx <= x2 && vy >= y1 && vy <= y2) return true;
+  const lo = Math.max(410, x1), hi = Math.min(600, x2);
+  if (lo <= hi && 790 - hi <= y2 && 790 - lo >= y1) return true;
+  return false;
+}
+function lum(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); };
+  return .2126 * f((n >> 16) & 255) + .7152 * f((n >> 8) & 255) + .0722 * f(n & 255);
+}
+function contrast(a, b) {
+  if (!a || !b) return Infinity;
+  const la = lum(a), lb = lum(b);
+  return (Math.max(la, lb) + .05) / (Math.min(la, lb) + .05);
+}
+function validate(st = state) {
+  const warns = [];
+  const boxesOf = (d) => d.bboxes ?? [d.bbox];
+  const hit = (a, b) => a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
+  for (const id of st.decorations) {
+    const d = DECORATIONS.find(x => x.id === id);
+    for (const b of boxesOf(d)) {
+      const [x1, y1, x2, y2] = b;
+      if (cornerZoneHit(b)) warns.push(`${d.name} 疑似进入切角保护区（D-1）`);
+      if (!d.covers_eyes) {
+        for (const [ex1, ey1, ex2, ey2] of EYE_ZONES) {
+          if (x1 < ex2 && x2 > ex1 && y1 < ey2 && y2 > ey1) { warns.push(`${d.name} 压到眼部区（D-3）`); break; }
+        }
+      }
+      if (x1 < -78 || y1 < -78 || x2 > 678 || y2 > 458) warns.push(`${d.name} 超出画布安全区（D-4）`);
+    }
+  }
+  // 规则 C-6：装饰互相叠压
+  for (let i = 0; i < st.decorations.length; i++) {
+    for (let j = i + 1; j < st.decorations.length; j++) {
+      const a = DECORATIONS.find(x => x.id === st.decorations[i]);
+      const b = DECORATIONS.find(x => x.id === st.decorations[j]);
+      if (boxesOf(a).some(ba => boxesOf(b).some(bb => hit(ba, bb))))
+        warns.push(`${a.name} 与 ${b.name} 同挂会互相叠压（C-6）`);
+    }
+  }
+  // Ⅱ级配色对比度红线（自定义取色时最有用）
+  const p = st.palette;
+  if (contrast(p.body, p.ink) < 2.0) warns.push("眼睛与体色对比不足，形象会失去焦点");
+  if (contrast(p.body, p.corner) < 1.25) warns.push("切角与体色过于接近，签名不可见");
+  if (contrast(p.body, p.accent) < 1.25) warns.push("点缀色与体色过于接近，装饰难辨认");
+  if (contrast(p.body, p.blush) < 1.25) warns.push("腮红与体色过于接近");
+  if (contrast(p.body, p.fluid) < 1.25) warns.push("汗泪与体色过于接近");
+  if (p.scene && contrast(p.scene, p.body) < 1.25) warns.push("体色与背景过于接近，小角浮不起来");
+  return warns;
+}
+
+// ==================== UI ====================
+function changedLayers() {
+  const ids = new Set();
+  if (prev.expression !== state.expression) ids.add(state.expression);
+  for (const id of state.decorations) if (!prev.decorations.includes(id)) ids.add(id);
+  return ids;
+}
+
+function render() {
+  const anim = changedLayers();
+  document.getElementById("stageBase").innerHTML = composeSVG(state, anim);
+
+  const base = document.getElementById("stageBase");
+  const scene = state.palette.scene;
+  base.style.background = scene || "var(--wash)";
+  base.classList.toggle("tex", !scene && texOn);
+  document.getElementById("texToggle").style.visibility = scene ? "hidden" : "visible";
+
+  const ex = EXPRESSIONS.expressions.find(e => e.id === state.expression);
+  const decos = state.decorations.map(id => DECORATIONS.find(d => d.id === id).name);
+  const p = state.palette;
+  document.getElementById("filename").textContent =
+    `小角-${ex.name}${decos.length ? "-" + decos.join("-") : ""}${p.name && p.id !== "original" && p.id !== "custom" ? "-" + p.name : ""}`;
+  const warnings = validate();
+  document.getElementById("warn").textContent =
+    warnings.length ? "注意：" + warnings.join("；") : "";
+
+  document.querySelectorAll(".tile[data-expr]").forEach(t =>
+    t.classList.toggle("on", t.dataset.expr === state.expression));
+  document.querySelectorAll(".tile[data-deco]").forEach(t =>
+    t.classList.toggle("on", state.decorations.includes(t.dataset.deco)));
+  document.querySelectorAll(".colorway[data-cw]").forEach(c =>
+    c.classList.toggle("on", c.dataset.cw === p.id));
+
+  // 配色变化 → 所有瓦片缩略图与品牌标跟随当前配色重渲
+  const pk = paletteKey(p);
+  if (pk !== prev.paletteKey) {
+    document.querySelectorAll(".brand-mark, .tile .art").forEach(el => {
+      const expr = el.closest(".tile") ? (el.closest(".tile").dataset.expr || "expr-01-standard") : "expr-01-standard";
+      const deco = el.closest(".tile") ? el.closest(".tile").dataset.deco : null;
+      el.innerHTML = composeSVG({ expression: expr, decorations: deco ? [deco] : [], palette: p });
+    });
+  }
+
+  prev = { expression: state.expression, decorations: [...state.decorations], paletteKey: pk };
+  save();
+}
+
+function makeTile(attrs, name) {
+  const b = document.createElement("button");
+  b.className = "tile";
+  for (const [k, v] of Object.entries(attrs)) b.dataset[k] = v;
+  b.innerHTML = `<span class="art"></span><span class="name">${name}</span>`;
+  return b;
+}
+
+function buildUI() {
+  document.getElementById("brandMark").innerHTML = composeSVG(state);
+  const count = EXPRESSIONS.expressions.length
+    * (DECORATIONS.filter(d => d.group === "head-top").length + 1)
+    * (DECORATIONS.filter(d => d.group === "eyes").length + 1)
+    * (DECORATIONS.filter(d => d.group === "neck").length + 1)
+    * Math.pow(2, DECORATIONS.filter(d => d.group.startsWith("float")).length)
+    * COLORWAYS.length;
+  document.getElementById("comboCount").innerHTML =
+    `组合空间 <b>${count.toLocaleString("zh-Hans-CN")}</b> 种 · 另支持自定义取色`;
+
+  const exprBox = document.getElementById("exprTiles");
+  for (const e of EXPRESSIONS.expressions) {
+    const t = makeTile({ expr: e.id }, e.name);
+    t.onclick = () => { state.expression = e.id; render(); };
+    exprBox.appendChild(t);
+  }
+
+  const decoBox = document.getElementById("decoGroups");
+  for (const g of DECO_GROUPS) {
+    const label = document.createElement("div");
+    label.className = "group-label"; label.textContent = g.label;
+    decoBox.appendChild(label);
+    const grid = document.createElement("div");
+    grid.className = "tiles";
+    const members = g.members
+      ? DECORATIONS.filter(d => g.members.includes(d.group))
+      : DECORATIONS.filter(d => d.group === g.id);
+    for (const d of members) {
+      const t = makeTile({ deco: d.id }, d.name);
+      t.onclick = () => {
+        const had = state.decorations.includes(d.id);
+        state.decorations = state.decorations.filter(id =>
+          id !== d.id && DECORATIONS.find(x => x.id === id).group !== d.group);
+        if (!had) state.decorations.push(d.id);
+        render();
+      };
+      grid.appendChild(t);
+    }
+    decoBox.appendChild(grid);
+  }
+
+  // 配色卡：三段色带 = 体色 / 切角 / 点缀
+  const cwBox = document.getElementById("colorwayCards");
+  for (const c of COLORWAYS) {
+    const b = document.createElement("button");
+    b.className = "colorway"; b.dataset.cw = c.id;
+    b.innerHTML = `<span class="sw">`
+      + `<i style="height:52%;background:${c.body}"></i>`
+      + `<i style="height:28%;background:${c.corner}"></i>`
+      + `<i style="height:20%;background:${c.accent}"></i></span>`
+      + `<span class="name">${c.name}</span>`;
+    b.onclick = () => { setPalette({ ...c }); };
+    cwBox.appendChild(b);
+  }
+
+  // 自定义取色
+  const bind = (id, key) => {
+    document.getElementById(id).addEventListener("input", e => {
+      setPalette({ ...state.palette, id: "custom", name: "自定义", [key]: e.target.value });
+    });
+  };
+  bind("pickBody", "body"); bind("pickCorner", "corner"); bind("pickInk", "ink");
+  bind("pickAccent", "accent"); bind("pickScene", "scene");
+  document.getElementById("btnClearScene").onclick = () => {
+    setPalette({ ...state.palette, id: "custom", name: "自定义", scene: null });
+  };
+}
+
+function setPalette(p) {
+  state.palette = normalizePalette(p);
+  syncPickers();
+  render();
+}
+function normalizePalette(p) {
+  const base = COLORWAYS.find(c => c.id === p?.id) || COLORWAYS[0];
+  return {
+    ...base,
+    ...(p || {}),
+    id: p?.id || base.id,
+    name: p?.name || base.name,
+    blush: p?.blush || base.blush,
+    fluid: p?.fluid || base.fluid,
+    panel: p?.panel || base.panel,
+  };
+}
+function syncPickers() {
+  const p = state.palette;
+  document.getElementById("pickBody").value = p.body;
+  document.getElementById("pickCorner").value = p.corner;
+  document.getElementById("pickInk").value = p.ink;
+  document.getElementById("pickAccent").value = p.accent;
+  document.getElementById("pickScene").value = p.scene || "#C8CAC7";
+}
+
+// ==================== 随机与导出 ====================
+function randomCombo() {
+  const exprs = EXPRESSIONS.expressions;
+  let ex; do { ex = exprs[Math.floor(Math.random() * exprs.length)]; } while (exprs.length > 1 && ex.id === state.expression);
+  state.expression = ex.id;
+  const pick = (arr, p) => (Math.random() < p ? arr[Math.floor(Math.random() * arr.length)].id : null);
+  const byGroup = g => DECORATIONS.filter(d => d.group === g);
+  state.decorations = [
+    pick(byGroup("head-top"), 0.55), pick(byGroup("eyes"), 0.35), pick(byGroup("neck"), 0.3),
+    pick(byGroup("float-right"), 0.22), pick(byGroup("float-left"), 0.18),
+  ].filter(Boolean);
+  const kept = [];
+  const hit = (a, b) => a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
+  for (const id of state.decorations) {
+    const d = DECORATIONS.find(x => x.id === id);
+    const boxes = d.bboxes ?? [d.bbox];
+    if (!kept.some(k => boxes.some(ba => (k.bboxes ?? [k.bbox]).some(bb => hit(ba, bb))))) kept.push(d);
+  }
+  state.decorations = kept.map(d => d.id);
+  setPalette({ ...COLORWAYS[Math.floor(Math.random() * COLORWAYS.length)] });
+}
+function fname() {
+  const ex = EXPRESSIONS.expressions.find(e => e.id === state.expression);
+  const decos = state.decorations.map(id => DECORATIONS.find(d => d.id === id).name);
+  const p = state.palette;
+  const cw = p.id && p.id !== "original" && p.id !== "custom" ? "-" + p.name : "";
+  return `小角-${ex.name}${decos.length ? "-" + decos.join("-") : ""}${cw}`;
+}
+function download(name, blob) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  setExportStatus(`已导出 ${name}`, false);
+}
+function setExportStatus(message, error = false) {
+  const el = document.getElementById("exportStatus");
+  if (!el) return;
+  el.textContent = message;
+  el.className = "export-status " + (error ? "error" : "ok");
+}
+function exportSVG() {
+  download(fname() + ".svg", new Blob([composeSVG()], { type: "image/svg+xml" }));
+}
+function exportPNG(size) {
+  const url = URL.createObjectURL(new Blob([composeSVG()], { type: "image/svg+xml" }));
+  const img = new Image();
+  img.onload = () => {
+    const c = document.createElement("canvas");
+    c.width = size; c.height = Math.round(size * 560 / 780);
+    c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+    URL.revokeObjectURL(url);
+    c.toBlob(b => download(fname() + `-${size}px.png`, b), "image/png");
+  };
+  img.onerror = () => { URL.revokeObjectURL(url); setExportStatus("PNG 导出失败，请用本地服务器打开页面后重试", true); };
+  img.src = url;
+}
+
+// ==================== 本地记忆 ====================
+function save() {
+  try { localStorage.setItem("xj-state", JSON.stringify({
+    expression: state.expression, decorations: state.decorations, palette: state.palette,
+  })); } catch (e) { /* file:// 下可能受限，静默降级 */ }
+}
+function load() {
+  try {
+    const raw = localStorage.getItem("xj-state");
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (s.expression && EXPRESSIONS.expressions.some(e => e.id === s.expression)) state.expression = s.expression;
+    if (Array.isArray(s.decorations)) state.decorations = s.decorations.filter(id => DECORATIONS.some(d => d.id === id));
+    if (s.palette && s.palette.body) {
+      const known = COLORWAYS.find(c => c.id === s.palette.id && paletteKey(c) === paletteKey(s.palette));
+      state.palette = normalizePalette(known ? { ...known } : { ...s.palette, id: s.palette.id || "custom", name: s.palette.name || "自定义" });
+    }
+  } catch (e) { /* 忽略坏数据 */ }
+}
+
+document.getElementById("btnSvg").onclick = exportSVG;
+document.getElementById("btnRandom").onclick = randomCombo;
+document.getElementById("btnClearDeco").onclick = () => {
+  state.decorations = [];
+  render();
+};
+document.getElementById("btnReset").onclick = () => {
+  state.expression = "expr-01-standard"; state.decorations = [];
+  setPalette({ ...COLORWAYS[0] });
+};
+document.getElementById("texToggle").onclick = (e) => {
+  texOn = !texOn; e.currentTarget.style.color = texOn ? "" : "var(--hairline)"; render();
+};
+document.querySelectorAll("[data-png]").forEach(b => b.onclick = () => exportPNG(+b.dataset.png));
+document.addEventListener("keydown", (e) => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === "r" || e.key === "R") { randomCombo(); return; }
+  const n = "123456789".indexOf(e.key) >= 0 ? Number(e.key) : e.key === "0" ? 10 : null;
+  if (n && EXPRESSIONS.expressions[n - 1]) {
+    state.expression = EXPRESSIONS.expressions[n - 1].id; render();
+  }
+});
+
+load();
+buildUI();
+syncPickers();
+render();
+</script>
+</body>
+</html>

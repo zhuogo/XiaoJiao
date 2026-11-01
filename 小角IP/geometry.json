@@ -1,0 +1,73 @@
+{
+  "body": [
+    600,
+    380
+  ],
+  "body_radius": 95,
+  "eye_size": [
+    90,
+    130
+  ],
+  "eye_radius": 45,
+  "eye_centers": [
+    [
+      168,
+      190
+    ],
+    [
+      306,
+      190
+    ]
+  ],
+  "eye_distance": 138,
+  "eye_gap": 48,
+  "corner": [
+    [
+      410,
+      380
+    ],
+    [
+      600,
+      190
+    ]
+  ],
+  "safe_margin": 90,
+  "app_body_width_ratio": 0.74,
+  "avatar_body_width_ratio": 0.74,
+  "app_background_radius_ratio": 0.2197265625,
+  "small_icon_eye_radius": 45,
+  "colors": {
+    "body": "#F3EBDF",
+    "ink": "#222222",
+    "corner": "#D44A36",
+    "app_bg": "#C8CAC7",
+    "expression_blue": "#6EC6E8",
+    "primary_background": "#C8CAC7",
+    "auxiliary_background": "#EDE4D3",
+    "panel": "#FFFFFF",
+    "vi_page_background": "#FFFFFF",
+    "vi_card_background": "#FFFFFF"
+  },
+  "release": "current",
+  "updated": "2026-10-20",
+  "outline": false,
+  "shadow": {
+    "color": "#252825",
+    "offset_y": 8,
+    "blur_std_deviation": 12,
+    "opacity": 0.14,
+    "contact": {
+      "offset_y": 2,
+      "blur_std_deviation": 2.5,
+      "opacity": 0.045
+    }
+  },
+  "wink": {
+    "left": "standard_open",
+    "right_path": "M338 151 L281 190 L338 229",
+    "stroke_width": 17,
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round"
+  },
+  "effective_date": "2026-10-20"
+}

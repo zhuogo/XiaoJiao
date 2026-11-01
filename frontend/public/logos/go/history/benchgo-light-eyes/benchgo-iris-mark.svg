@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="760" viewBox="0 0 840 760"><title>BenchGo · 小角 · mark</title><g data-part="placement" transform="translate(120 190)"><path data-part="body" d="M95 0H505A95 95 0 0 1 600 95V285A95 95 0 0 1 505 380H95A95 95 0 0 1 0 285V95A95 95 0 0 1 95 0Z" fill="#716BAD"/><path data-part="corner" d="M410 380H505A95 95 0 0 0 600 285V190Z" fill="#C4DCC8"/><g data-part="eyes" fill="#F5F2ED"><rect x="123" y="125" width="90" height="130" rx="45"/><rect x="261" y="125" width="90" height="130" rx="45"/></g><g data-part="editor-strip">
+          <rect x="78" y="45" width="128" height="14" rx="7" fill="#C4DCC8"/>
+          <rect x="230" y="45" width="52" height="14" rx="7" fill="#9690C5"/>
+          <rect x="516" y="40" width="10" height="25" rx="3" fill="#ECCAAC"/>
+          <path d="M49 82H551" fill="none" stroke="#9690C5" stroke-width="5"/>
+        </g></g></svg>

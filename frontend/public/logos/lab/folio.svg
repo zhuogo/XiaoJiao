@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="700" viewBox="0 0 840 700"><title>XiaoJiao folio</title><g transform="translate(120 145) rotate(-8 300 190)">
+ <path d="M95 0H505A95 95 0 0 1 600 95V285A95 95 0 0 1 505 380H95A95 95 0 0 1 0 285V95A95 95 0 0 1 95 0Z" transform="translate(-24 36)" fill="#93B5A3"/><path d="M95 0H505A95 95 0 0 1 600 95V285A95 95 0 0 1 505 380H95A95 95 0 0 1 0 285V95A95 95 0 0 1 95 0Z" transform="translate(-12 18)" fill="#C5D9C7"/>
+ <path d="M95 0H505A95 95 0 0 1 600 95V190L410 380H95A95 95 0 0 1 0 285V95A95 95 0 0 1 95 0Z" fill="#F5F8EC"/>
+ <path d="M410 380V252Q410 190 472 190H600Z" fill="#3F8061"/><path d="M410 380L600 190L459 247Z" fill="#75AC86"/>
+ <g fill="#214A38"><rect x="123" y="125" width="90" height="130" rx="45"/><rect x="261" y="125" width="90" height="130" rx="45"/></g><path d="M77 68H196" stroke="#C2D5BE" stroke-width="9" stroke-linecap="round"/>
+ </g></svg>

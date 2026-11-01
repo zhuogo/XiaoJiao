@@ -1,0 +1,21 @@
+:root {
+  --draftgo-primary: #244DE0;
+  --draftgo-accent: #EE9853;
+  --draftgo-paper: #F1F5FF;
+  --draftgo-surface: #E9EEFA;
+  --draftgo-ink: #172B61;
+  --draftgo-onPrimary: #FFFFFF;
+  --draftgo-font: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  --draftgo-display-size: 48px;
+  --draftgo-display-line-height: 1.2;
+  --draftgo-display-weight: 600;
+  --draftgo-heading-size: 32px;
+  --draftgo-heading-line-height: 1.3;
+  --draftgo-heading-weight: 600;
+  --draftgo-body-size: 16px;
+  --draftgo-body-line-height: 1.6;
+  --draftgo-body-weight: 400;
+  --draftgo-caption-size: 14px;
+  --draftgo-caption-line-height: 1.5;
+  --draftgo-caption-weight: 400;
+}

@@ -1,0 +1,489 @@
+{
+  "geometry": {
+    "body": [
+      600,
+      380
+    ],
+    "body_radius": 95,
+    "eye_size": [
+      90,
+      130
+    ],
+    "eye_radius": 45,
+    "eye_centers": [
+      [
+        168,
+        190
+      ],
+      [
+        306,
+        190
+      ]
+    ],
+    "eye_distance": 138,
+    "eye_gap": 48,
+    "corner": [
+      [
+        410,
+        380
+      ],
+      [
+        600,
+        190
+      ]
+    ],
+    "safe_margin": 90,
+    "app_body_width_ratio": 0.74,
+    "avatar_body_width_ratio": 0.74,
+    "app_background_radius_ratio": 0.2197265625,
+    "small_icon_eye_radius": 45,
+    "colors": {
+      "body": "#F3EBDF",
+      "ink": "#222222",
+      "corner": "#D44A36",
+      "app_bg": "#C8CAC7",
+      "expression_blue": "#6EC6E8",
+      "primary_background": "#C8CAC7",
+      "auxiliary_background": "#EDE4D3",
+      "panel": "#FFFFFF",
+      "vi_page_background": "#FFFFFF",
+      "vi_card_background": "#FFFFFF"
+    },
+    "release": "current",
+    "updated": "2026-10-20",
+    "outline": false,
+    "shadow": {
+      "color": "#252825",
+      "offset_y": 8,
+      "blur_std_deviation": 12,
+      "opacity": 0.14,
+      "contact": {
+        "offset_y": 2,
+        "blur_std_deviation": 2.5,
+        "opacity": 0.045
+      }
+    },
+    "wink": {
+      "left": "standard_open",
+      "right_path": "M338 151 L281 190 L338 229",
+      "stroke_width": 17,
+      "stroke_linecap": "round",
+      "stroke_linejoin": "round"
+    },
+    "effective_date": "2026-10-20"
+  },
+  "expressions": [
+    {
+      "id": "expr-01-standard",
+      "no": 1,
+      "name": "标准",
+      "source": "小角IP/04-表情包/SVG/sticker-01-standard.svg",
+      "fragment": "<rect x=\"123.0\" y=\"125.0\" width=\"90\" height=\"130\" rx=\"45\" fill=\"#222222\" /><rect x=\"261.0\" y=\"125.0\" width=\"90\" height=\"130\" rx=\"45\" fill=\"#222222\" />"
+    },
+    {
+      "id": "expr-02-happy",
+      "no": 2,
+      "name": "开心",
+      "source": "小角IP/04-表情包/SVG/sticker-02-happy.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M136 201Q168 135 200 201\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M274 201Q306 135 338 201\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g>"
+    },
+    {
+      "id": "expr-03-wink",
+      "no": 3,
+      "name": "眨眼",
+      "source": "小角IP/04-表情包/SVG/sticker-03-wink.svg",
+      "fragment": "<rect x=\"123.0\" y=\"125.0\" width=\"90\" height=\"130\" rx=\"45\" fill=\"#222222\" /><path d=\"M338 151 L281 190 L338 229\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />"
+    },
+    {
+      "id": "expr-04-laugh",
+      "no": 4,
+      "name": "大笑",
+      "source": "小角IP/04-表情包/SVG/sticker-04-laugh.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M132 207Q168 115 204 207\" fill=\"none\" stroke=\"#222222\" stroke-width=\"22\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M270 207Q306 115 342 207\" fill=\"none\" stroke=\"#222222\" stroke-width=\"22\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g>"
+    },
+    {
+      "id": "expr-05-cry",
+      "no": 5,
+      "name": "哭",
+      "source": "小角IP/04-表情包/SVG/sticker-05-cry.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M134 158L198 176V 205Q198 233 168 233Q138 233 138 205Z\" fill=\"#222222\" /><path d=\"M168 226Q141 251 151 266Q168 286 185 266Q195 251 168 226Z\" fill=\"#6EC6E8\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M276 176L340 158L336 205Q336 233 306 233Q276 233 276 205Z\" fill=\"#222222\" /><path d=\"M306 226Q279 251 289 266Q306 286 323 266Q333 251 306 226Z\" fill=\"#6EC6E8\" /></g>"
+    },
+    {
+      "id": "expr-06-angry",
+      "no": 6,
+      "name": "生气",
+      "source": "小角IP/04-表情包/SVG/sticker-06-angry.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M130 153L204 179V 208Q196 241 168 236Q134 235 134 207Z\" fill=\"#222222\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M270 179L344 153L340 207Q340 235 306 236Q278 241 270 208Z\" fill=\"#222222\" /></g>"
+    },
+    {
+      "id": "expr-07-wow",
+      "no": 7,
+      "name": "惊讶",
+      "source": "小角IP/04-表情包/SVG/sticker-07-wow.svg",
+      "fragment": "<circle cx=\"168\" cy=\"190\" r=\"52\" fill=\"#222222\" /><circle cx=\"306\" cy=\"190\" r=\"52\" fill=\"#222222\" />"
+    },
+    {
+      "id": "expr-08-love",
+      "no": 8,
+      "name": "爱心眼",
+      "source": "小角IP/04-表情包/SVG/sticker-08-love.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M168 224C150 207 120 182 134 161C145 144 161 151 168 163C175 151 191 144 202 161C216 182 186 207 168 224Z\" fill=\"#D44A36\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M306 224C288 207 258 182 272 161C283 144 299 151 306 163C313 151 329 144 340 161C354 182 324 207 306 224Z\" fill=\"#D44A36\" /></g>"
+    },
+    {
+      "id": "expr-09-sleepy",
+      "no": 9,
+      "name": "困",
+      "source": "小角IP/04-表情包/SVG/sticker-09-sleepy.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M132 189H204Q202 229 168 229Q134 229 132 189Z\" fill=\"#222222\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M270 189H342Q340 229 306 229Q272 229 270 189Z\" fill=\"#222222\" /></g>"
+    },
+    {
+      "id": "expr-10-cool",
+      "no": 10,
+      "name": "酷",
+      "source": "小角IP/04-表情包/SVG/sticker-10-cool.svg",
+      "fragment": "<g transform=\"translate(237 190) scale(1.1538461538461537 1.1504424778761062) translate(-237 -190)\"><rect x=\"113\" y=\"148\" width=\"248\" height=\"16\" rx=\"6\" fill=\"#222222\" /><path d=\"M121 158H226V183Q226 224 177 224Q128 224 125 183Z\" fill=\"#222222\" /><path d=\"M248 158H353L349 183Q346 224 300 224Q251 224 248 183Z\" fill=\"#222222\" /><rect x=\"219\" y=\"165\" width=\"37\" height=\"12\" rx=\"5\" fill=\"#222222\" /></g>"
+    },
+    {
+      "id": "expr-11-dizzy",
+      "no": 11,
+      "name": "晕",
+      "source": "小角IP/04-表情包/SVG/sticker-11-dizzy.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M172.00 190.00L172.22 190.56L172.36 191.17L172.41 191.83L172.36 192.52L172.20 193.22L171.92 193.92L171.54 194.61L171.03 195.25L170.42 195.84L169.70 196.36L168.89 196.78L168.00 197.10L167.04 197.30L166.03 197.36L164.99 197.28L163.93 197.04L162.89 196.66L161.88 196.12L160.93 195.42L160.06 194.58L159.29 193.61L158.65 192.51L158.14 191.30L157.80 190.00L157.63 188.63L157.65 187.23L157.86 185.80L158.27 184.38L158.88 183.00L159.69 181.69L160.69 180.47L161.87 179.38L163.21 178.43L164.69 177.65L166.30 177.07L168.00 176.70L169.77 176.56L171.58 176.65L173.39 177.00L175.17 177.59L176.88 178.42L178.50 179.50L179.99 180.80L181.31 182.32L182.44 184.02L183.34 185.89L184.00 187.89L184.40 190.00L184.52 192.17L184.34 194.38L183.87 196.57L183.10 198.72L182.04 200.77L180.69 202.69L179.08 204.45L177.23 205.99L175.17 207.30L172.91 208.34L170.51 209.08L168.00 209.50L165.42 209.59L162.82 209.33L160.24 208.73L157.73 207.78L155.34 206.50L153.12 204.88L151.09 202.97L149.32 200.78L147.84 198.35L146.67 195.72L145.85 192.92L145.40 190.00L145.34 187.02L145.67 184.02L146.40 181.05L147.53 178.18L149.05 175.46L150.92 172.92L153.14 170.64L155.67 168.64L158.46 166.97L161.48 165.67L164.68 164.78L168.00 164.30L171.39 164.26L174.79 164.68L178.13 165.54L181.37 166.85L184.43 168.59L187.27 170.73L189.82 173.25L192.05 176.12L193.89 179.28L195.32 182.68L196.30 186.27L196.80 190.00L196.81 193.79L196.32 197.59L195.32 201.32L193.84 204.92L191.87 208.32L189.46 211.46L186.63 214.28L183.43 216.73L179.91 218.76L176.12 220.31L172.13 221.37L168.00 221.90L163.80 221.88L159.61 221.31L155.50 220.19L151.53 218.52L147.79 216.33L144.35 213.65L141.26 210.52L138.58 206.98L136.38 203.10L134.69 198.92L133.56 194.53L133.00 190.00\" fill=\"none\" stroke=\"#222222\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M310.00 190.00L310.22 190.56L310.36 191.17L310.41 191.83L310.36 192.52L310.20 193.22L309.92 193.92L309.54 194.61L309.03 195.25L308.42 195.84L307.70 196.36L306.89 196.78L306.00 197.10L305.04 197.30L304.03 197.36L302.99 197.28L301.93 197.04L300.89 196.66L299.88 196.12L298.93 195.42L298.06 194.58L297.29 193.61L296.65 192.51L296.14 191.30L295.80 190.00L295.63 188.63L295.65 187.23L295.86 185.80L296.27 184.38L296.88 183.00L297.69 181.69L298.69 180.47L299.87 179.38L301.21 178.43L302.69 177.65L304.30 177.07L306.00 176.70L307.77 176.56L309.58 176.65L311.39 177.00L313.17 177.59L314.88 178.42L316.50 179.50L317.99 180.80L319.31 182.32L320.44 184.02L321.34 185.89L322.00 187.89L322.40 190.00L322.52 192.17L322.34 194.38L321.87 196.57L321.10 198.72L320.04 200.77L318.69 202.69L317.08 204.45L315.23 205.99L313.17 207.30L310.91 208.34L308.51 209.08L306.00 209.50L303.42 209.59L300.82 209.33L298.24 208.73L295.73 207.78L293.34 206.50L291.12 204.88L289.09 202.97L287.32 200.78L285.84 198.35L284.67 195.72L283.85 192.92L283.40 190.00L283.34 187.02L283.67 184.02L284.40 181.05L285.53 178.18L287.05 175.46L288.92 172.92L291.14 170.64L293.67 168.64L296.46 166.97L299.48 165.67L302.68 164.78L306.00 164.30L309.39 164.26L312.79 164.68L316.13 165.54L319.37 166.85L322.43 168.59L325.27 170.73L327.82 173.25L330.05 176.12L331.89 179.28L333.32 182.68L334.30 186.27L334.80 190.00L334.81 193.79L334.32 197.59L333.32 201.32L331.84 204.92L329.87 208.32L327.46 211.46L324.63 214.28L321.43 216.73L317.91 218.76L314.12 220.31L310.13 221.37L306.00 221.90L301.80 221.88L297.61 221.31L293.50 220.19L289.53 218.52L285.79 216.33L282.35 213.65L279.26 210.52L276.58 206.98L274.38 203.10L272.69 198.92L271.56 194.53L271.00 190.00\" fill=\"none\" stroke=\"#222222\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g>"
+    },
+    {
+      "id": "expr-12-cheer",
+      "no": 12,
+      "name": "欢呼",
+      "source": "小角IP/04-表情包/SVG/sticker-12-cheer.svg",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M138 207L168 162L198 207\" fill=\"none\" stroke=\"#222222\" stroke-width=\"19\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M276 207L306 162L336 207\" fill=\"none\" stroke=\"#222222\" stroke-width=\"19\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g>"
+    },
+    {
+      "id": "expr-13-star",
+      "no": 13,
+      "name": "闪闪",
+      "fragment": "<g transform=\"translate(168 190)\"><path d=\"M0 -58C6 -20 20 -6 58 0C20 6 6 20 0 58C-6 20 -20 6 -58 0C-20 -6 -6 -20 0 -58Z\" fill=\"#D44A36\"/></g><g transform=\"translate(306 190)\"><path d=\"M0 -58C6 -20 20 -6 58 0C20 6 6 20 0 58C-6 20 -20 6 -58 0C-20 -6 -6 -20 0 -58Z\" fill=\"#D44A36\"/></g>"
+    },
+    {
+      "id": "expr-14-sideeye",
+      "no": 14,
+      "name": "斜眼",
+      "fragment": "<path d=\"M218 156L294 184V217A38 38 0 0 1 218 217Z\" fill=\"#222222\" /><path d=\"M356 156L432 184V217A38 38 0 0 1 356 217Z\" fill=\"#222222\" />"
+    },
+    {
+      "id": "expr-15-flat",
+      "no": 15,
+      "name": "无语",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M128 190 H208\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M266 190 H346\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" /></g>"
+    },
+    {
+      "id": "expr-16-shy",
+      "no": 16,
+      "name": "害羞",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M136 196Q168 228 200 196\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M274 196Q306 228 338 196\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><ellipse cx=\"168\" cy=\"249\" rx=\"28\" ry=\"18\" fill=\"{{blush}}\" /><ellipse cx=\"306\" cy=\"249\" rx=\"28\" ry=\"18\" fill=\"{{blush}}\" />"
+    },
+    {
+      "id": "expr-18-scare",
+      "no": 18,
+      "name": "惊恐",
+      "fragment": "<circle cx=\"168\" cy=\"190\" r=\"60\" fill=\"#222222\" /><circle cx=\"306\" cy=\"190\" r=\"60\" fill=\"#222222\" /><path d=\"M86 58C92.3 70.6 105.8 85 105.8 97.6C105.8 110.2 96.8 119.2 86 119.2C75.2 119.2 66.2 110.2 66.2 97.6C66.2 85 79.7 70.6 86 58Z\" fill=\"{{fluid}}\" transform=\"rotate(-16 86 85)\" /><path d=\"M44 44C48.2 52.4 57.2 62 57.2 70.4C57.2 78.8 51.2 84.8 44 84.8C36.8 84.8 30.8 78.8 30.8 70.4C30.8 62 39.8 52.4 44 44Z\" fill=\"{{fluid}}\" transform=\"rotate(-26 44 62)\" /><path d=\"M388 58C394.3 70.6 407.8 85 407.8 97.6C407.8 110.2 398.8 119.2 388 119.2C377.2 119.2 368.2 110.2 368.2 97.6C368.2 85 381.7 70.6 388 58Z\" fill=\"{{fluid}}\" transform=\"rotate(16 388 85)\" /><path d=\"M430 44C434.2 52.4 443.2 62 443.2 70.4C443.2 78.8 437.2 84.8 430 84.8C422.8 84.8 416.8 78.8 416.8 70.4C416.8 62 425.8 52.4 430 44Z\" fill=\"{{fluid}}\" transform=\"rotate(26 430 62)\" />"
+    },
+    {
+      "id": "expr-19-pitiful",
+      "no": 19,
+      "name": "可怜",
+      "fragment": "<circle cx=\"168\" cy=\"196\" r=\"56\" fill=\"#222222\" /><circle cx=\"306\" cy=\"196\" r=\"56\" fill=\"#222222\" /><ellipse cx=\"168\" cy=\"246\" rx=\"44\" ry=\"14\" fill=\"{{fluid}}\" /><ellipse cx=\"306\" cy=\"246\" rx=\"44\" ry=\"14\" fill=\"{{fluid}}\" />"
+    },
+    {
+      "id": "expr-20-stare",
+      "no": 20,
+      "name": "盯",
+      "fragment": "<path d=\"M112 117Q112 99 130 99H206Q224 99 224 117V225A56 56 0 0 1 112 225Z\" fill=\"#222222\"/><path d=\"M250 117Q250 99 268 99H344Q362 99 362 117V225A56 56 0 0 1 250 225Z\" fill=\"#222222\"/>"
+    },
+    {
+      "id": "expr-21-think",
+      "no": 21,
+      "name": "思考",
+      "fragment": "<rect x=\"135\" y=\"85\" width=\"90\" height=\"130\" rx=\"45\" fill=\"#222222\" /><rect x=\"273\" y=\"85\" width=\"90\" height=\"130\" rx=\"45\" fill=\"#222222\" /><circle cx=\"394\" cy=\"94\" r=\"11\" fill=\"#222222\" /><circle cx=\"424\" cy=\"60\" r=\"17\" fill=\"#222222\" />"
+    },
+    {
+      "id": "expr-22-glee",
+      "no": 22,
+      "name": "窃喜",
+      "fragment": "<g transform=\"translate(168 190) scale(1.1538461538461537 1.1504424778761062) translate(-168 -190)\"><path d=\"M134 152 L202 190 L134 228\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><g transform=\"translate(306 190) scale(1.1538461538461537 1.1504424778761062) translate(-306 -190)\"><path d=\"M336 152 L268 190 L336 228\" fill=\"none\" stroke=\"#222222\" stroke-width=\"17\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></g><ellipse cx=\"158\" cy=\"270\" rx=\"19\" ry=\"12\" fill=\"{{blush}}\" /><ellipse cx=\"316\" cy=\"270\" rx=\"19\" ry=\"12\" fill=\"{{blush}}\" />"
+    }
+  ],
+  "decorations": [
+    {
+      "id": "deco-hat-beanie",
+      "name": "毛线帽",
+      "group": "head-top",
+      "covers_eyes": false,
+      "bbox": [
+        170,
+        -78,
+        430,
+        22
+      ],
+      "fragment": "<g id=\"deco-hat-beanie\"><path d=\"M178 4 Q178 -58 300 -58 Q422 -58 422 4 Z\" fill=\"{{corner}}\"/><circle cx=\"300\" cy=\"-65\" r=\"13\" fill=\"{{accent}}\"/><rect x=\"170\" y=\"-8\" width=\"260\" height=\"30\" rx=\"15\" fill=\"{{ink}}\"/><path d=\"M210 -2 V12 M250 -2 V12 M290 -2 V12 M330 -2 V12 M370 -2 V12\" stroke=\"{{body}}\" stroke-width=\"6\" stroke-linecap=\"round\" fill=\"none\"/></g>"
+    },
+    {
+      "id": "deco-hat-cap",
+      "name": "棒球帽",
+      "group": "head-top",
+      "covers_eyes": false,
+      "bbox": [
+        180,
+        -78,
+        532,
+        50
+      ],
+      "fragment": "<g id=\"deco-hat-cap\"><path d=\"M182 10 A118 88 0 0 1 418 10 Z\" fill=\"{{ink}}\"/><path d=\"M300 -58 V8\" stroke=\"{{body}}\" stroke-width=\"6\" stroke-linecap=\"round\" fill=\"none\"/><rect x=\"390\" y=\"-9\" width=\"144\" height=\"26\" rx=\"13\" fill=\"{{corner}}\" transform=\"rotate(14 390 2)\"/><circle cx=\"300\" cy=\"-69\" r=\"8\" fill=\"{{accent}}\"/></g>"
+    },
+    {
+      "id": "deco-hat-beret",
+      "name": "贝雷帽",
+      "group": "head-top",
+      "covers_eyes": false,
+      "bbox": [
+        117,
+        -78,
+        393,
+        8
+      ],
+      "fragment": "<g id=\"deco-hat-beret\"><ellipse cx=\"255\" cy=\"-24\" rx=\"138\" ry=\"32\" fill=\"{{ink}}\"/><ellipse cx=\"255\" cy=\"-38\" rx=\"138\" ry=\"38\" fill=\"{{corner}}\"/><rect x=\"248\" y=\"-78\" width=\"14\" height=\"14\" rx=\"7\" fill=\"{{ink}}\"/></g>"
+    },
+    {
+      "id": "deco-bow",
+      "name": "蝴蝶结",
+      "group": "head-top",
+      "covers_eyes": false,
+      "bbox": [
+        352,
+        -62,
+        524,
+        24
+      ],
+      "fragment": "<g id=\"deco-bow\"><path d=\"M420 -18 Q406 6 396 18 L418 24 Q430 6 436 -14 Z\" fill=\"{{corner}}\"/><path d=\"M456 -18 Q470 6 480 18 L458 24 Q446 6 440 -14 Z\" fill=\"{{corner}}\"/><path d=\"M438 -34 Q400 -62 372 -52 Q352 -44 356 -26 Q360 -8 384 -12 Q418 -18 438 -34 Z\" fill=\"{{corner}}\"/><path d=\"M438 -34 Q476 -62 504 -52 Q524 -44 520 -26 Q516 -8 492 -12 Q458 -18 438 -34 Z\" fill=\"{{corner}}\"/><rect x=\"424\" y=\"-47\" width=\"28\" height=\"27\" rx=\"10\" fill=\"{{ink}}\"/></g>"
+    },
+    {
+      "id": "deco-hairpin",
+      "name": "发夹",
+      "group": "head-top",
+      "covers_eyes": false,
+      "bbox": [
+        112,
+        -38,
+        260,
+        20
+      ],
+      "fragment": "<g id=\"deco-hairpin\"><path d=\"M120 12 Q186 -60 252 12\" fill=\"none\" stroke=\"{{accent}}\" stroke-width=\"16\" stroke-linecap=\"round\"/><circle cx=\"186\" cy=\"-24\" r=\"12\" fill=\"{{ink}}\"/></g>"
+    },
+    {
+      "id": "deco-hat-santa",
+      "name": "圣诞帽",
+      "group": "head-top",
+      "covers_eyes": false,
+      "bbox": [
+        196,
+        -71,
+        406,
+        22
+      ],
+      "fragment": "<g id=\"deco-hat-santa\"><path d=\"M202 2 Q236 -44 284 -60 Q298 -66 314 -58 Q352 -40 400 2 Z\" fill=\"{{corner}}\"/><circle cx=\"297\" cy=\"-58\" r=\"13\" fill=\"{{panel}}\"/><rect x=\"196\" y=\"-6\" width=\"210\" height=\"28\" rx=\"14\" fill=\"{{panel}}\"/></g>"
+    },
+    {
+      "id": "deco-glasses-round",
+      "name": "圆框眼镜",
+      "group": "eyes",
+      "covers_eyes": true,
+      "bbox": [
+        12,
+        103,
+        373,
+        278
+      ],
+      "bboxes": [
+        [
+          12,
+          103,
+          373,
+          278
+        ],
+        [
+          12,
+          158,
+          541,
+          194
+        ]
+      ],
+      "fragment": "<g id=\"deco-glasses-round\"><path d=\"M104 168 Q66 166 44 176\" fill=\"none\" stroke=\"{{ink}}\" stroke-width=\"17\" stroke-linecap=\"round\"/><path d=\"M372 168 Q510 166 532 176\" fill=\"none\" stroke=\"{{ink}}\" stroke-width=\"17\" stroke-linecap=\"round\"/><rect x=\"109\" y=\"111\" width=\"118\" height=\"158\" rx=\"44\" fill=\"none\" stroke=\"{{ink}}\" stroke-width=\"17\"/><rect x=\"247\" y=\"111\" width=\"118\" height=\"158\" rx=\"44\" fill=\"none\" stroke=\"{{ink}}\" stroke-width=\"17\"/><path d=\"M227 176 Q237 162 247 176\" fill=\"none\" stroke=\"{{ink}}\" stroke-width=\"17\" stroke-linecap=\"round\"/></g>"
+    },
+    {
+      "id": "deco-glasses-sunglasses",
+      "name": "墨镜",
+      "group": "eyes",
+      "covers_eyes": true,
+      "bbox": [
+        94,
+        142,
+        380,
+        229
+      ],
+      "fragment": "<g id=\"deco-glasses-sunglasses\" transform=\"translate(237 190) scale(1.1538461538461537 1.1504424778761062) translate(-237 -190)\"><rect x=\"113\" y=\"148\" width=\"248\" height=\"16\" rx=\"6\" fill=\"{{ink}}\"/><path d=\"M121 158H226V183Q226 224 177 224Q128 224 125 183Z\" fill=\"{{ink}}\"/><path d=\"M248 158H353L349 183Q346 224 300 224Q251 224 248 183Z\" fill=\"{{ink}}\"/><rect x=\"219\" y=\"165\" width=\"37\" height=\"12\" rx=\"5\" fill=\"{{ink}}\"/></g>"
+    },
+    {
+      "id": "deco-scarf",
+      "name": "披巾",
+      "group": "neck",
+      "covers_eyes": false,
+      "bbox": [
+        2,
+        0,
+        154,
+        120
+      ],
+      "fragment": "<g id=\"deco-scarf\"><path d=\"M97 0 L152 0 Q148 62 118 110 Q92 116 64 112 Q30 108 3 98 Q12 14 97 0 Z\" fill=\"{{accent}}\"/><path d=\"M124 16 Q96 60 48 100\" fill=\"none\" stroke=\"{{body}}\" stroke-width=\"8\" stroke-linecap=\"round\"/><path d=\"M142 24 Q118 66 78 106\" fill=\"none\" stroke=\"{{body}}\" stroke-width=\"8\" stroke-linecap=\"round\"/></g>"
+    },
+    {
+      "id": "deco-love",
+      "name": "爱心",
+      "group": "float-right",
+      "covers_eyes": false,
+      "bbox": [
+        420,
+        -78,
+        520,
+        10
+      ],
+      "fragment": "<g id=\"deco-love\" transform=\"translate(-90 -2)\"><path d=\"M560 -56 C542 -76 510 -68 510 -40 C510 -14 536 -2 560 12 C584 -2 610 -14 610 -40 C610 -68 578 -76 560 -56 Z\" fill=\"{{corner}}\"/></g>"
+    },
+    {
+      "id": "deco-zzz",
+      "name": "梦梦",
+      "group": "float-left",
+      "covers_eyes": false,
+      "bbox": [
+        22,
+        -74,
+        118,
+        -10
+      ],
+      "fragment": "<g id=\"deco-zzz\"><path d=\"M28 -68 H54 L28 -42 H54\" fill=\"none\" stroke=\"{{ink}}\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M66 -46 H88 L66 -24 H88\" fill=\"none\" stroke=\"{{ink}}\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M98 -30 H114 L98 -14 H114\" fill=\"none\" stroke=\"{{ink}}\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g>"
+    }
+  ],
+  "palettes": [
+    {
+      "id": "original",
+      "name": "原味",
+      "body": "#F3EBDF",
+      "corner": "#D44A36",
+      "ink": "#222222",
+      "accent": "#6EC6E8",
+      "scene": null,
+      "blush": "#E89A8A",
+      "fluid": "#6EC6E8",
+      "panel": "#2A2A28"
+    },
+    {
+      "id": "inkjade",
+      "name": "墨玉",
+      "body": "#383833",
+      "corner": "#D44A36",
+      "ink": "#F3EBDF",
+      "accent": "#6EC6E8",
+      "scene": "#1E1E1B",
+      "blush": "#E89A8A",
+      "fluid": "#6EC6E8",
+      "panel": "#F3EBDF"
+    },
+    {
+      "id": "peach",
+      "name": "蜜桃",
+      "body": "#F6D7C3",
+      "corner": "#E05A3F",
+      "ink": "#3A2E28",
+      "accent": "#7FBFA0",
+      "scene": "#FFF9F1",
+      "blush": "#E07A66",
+      "fluid": "#5BA8C9",
+      "panel": "#3A2E28"
+    },
+    {
+      "id": "matcha",
+      "name": "抹茶",
+      "body": "#DCE3C8",
+      "corner": "#B85C3A",
+      "ink": "#33392B",
+      "accent": "#E8A13C",
+      "scene": "#FCFDF7",
+      "blush": "#D98A80",
+      "fluid": "#5B9BB0",
+      "panel": "#33392B"
+    },
+    {
+      "id": "seasalt",
+      "name": "海盐",
+      "body": "#D2E2E5",
+      "corner": "#4A7E8C",
+      "ink": "#22333A",
+      "accent": "#F2B84B",
+      "scene": "#F9FCFC",
+      "blush": "#E08878",
+      "fluid": "#4A8CA8",
+      "panel": "#22333A"
+    },
+    {
+      "id": "sakura",
+      "name": "樱花",
+      "body": "#F7D9DE",
+      "corner": "#C25B6E",
+      "ink": "#4A2C33",
+      "accent": "#8FB7A8",
+      "scene": "#FFFBFC",
+      "blush": "#D46A6A",
+      "fluid": "#5BA8C9",
+      "panel": "#4A2C33"
+    },
+    {
+      "id": "sunset",
+      "name": "落日",
+      "body": "#F5C77E",
+      "corner": "#97281B",
+      "ink": "#3B2317",
+      "accent": "#4A7E8C",
+      "scene": "#FBEAD1",
+      "blush": "#C25B4A",
+      "fluid": "#4A8CA8",
+      "panel": "#3B2317"
+    },
+    {
+      "id": "nightline",
+      "name": "夜线",
+      "body": "#262A32",
+      "corner": "#6EC6E8",
+      "ink": "#E8F4FA",
+      "accent": "#F2B84B",
+      "scene": "#0E1116",
+      "blush": "#E89A8A",
+      "fluid": "#7CC4E8",
+      "panel": "#E8F4FA"
+    }
+  ],
+  "default_state": {
+    "expression": "expr-01-standard",
+    "decorations": [],
+    "palette": {
+      "id": "original",
+      "name": "原味",
+      "body": "#F3EBDF",
+      "corner": "#D44A36",
+      "ink": "#222222",
+      "accent": "#6EC6E8",
+      "scene": null,
+      "blush": "#E89A8A",
+      "fluid": "#6EC6E8",
+      "panel": "#2A2A28"
+    }
+  },
+  "source_sha256": "5a81304302c8804d25a9056442de3468a2f28d5f86cb08fc009856d06e45b87c"
+}

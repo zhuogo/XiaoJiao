@@ -1,0 +1,21 @@
+:root {
+  --benchgo-primary: #222222;
+  --benchgo-accent: #D44A36;
+  --benchgo-paper: #F3EBDF;
+  --benchgo-surface: #E8EAE5;
+  --benchgo-ink: #222222;
+  --benchgo-onPrimary: #FFFFFF;
+  --benchgo-font: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  --benchgo-display-size: 48px;
+  --benchgo-display-line-height: 1.2;
+  --benchgo-display-weight: 600;
+  --benchgo-heading-size: 32px;
+  --benchgo-heading-line-height: 1.3;
+  --benchgo-heading-weight: 600;
+  --benchgo-body-size: 16px;
+  --benchgo-body-line-height: 1.6;
+  --benchgo-body-weight: 400;
+  --benchgo-caption-size: 14px;
+  --benchgo-caption-line-height: 1.5;
+  --benchgo-caption-weight: 400;
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="700" viewBox="0 0 840 700"><title>XiaoJiao ribbon</title><g transform="translate(120 160)"><path d="M95 0H505A95 95 0 0 1 600 95V285A95 95 0 0 1 505 380H95A95 95 0 0 1 0 285V95A95 95 0 0 1 95 0Z" fill="#763450"/>
+ <path d="M410 380H505Q600 380 600 285V190L410 380L329 461L320 385L246 381L410 217Z" fill="#E9A6BB"/>
+ <path d="M410 217L491 299L410 380L329 299Z" fill="#F9DDE6"/>
+ <g fill="#FFF2EC"><rect x="123" y="125" width="90" height="130" rx="45"/><rect x="261" y="125" width="90" height="130" rx="45"/></g><path d="M444 346L491 299" stroke="#AC5274" stroke-width="5"/>
+ </g></svg>

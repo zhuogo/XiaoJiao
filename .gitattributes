@@ -1,0 +1,14 @@
+* text=auto eol=lf
+
+# Asset hashes are part of the delivery contract; never normalize their bytes.
+frontend/public/** -text
+小角IP/** -text
+archive/legacy-generator/index.html -text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.pdf binary

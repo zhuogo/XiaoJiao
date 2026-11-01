@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="700" viewBox="0 0 840 700"><title>XiaoJiao orbit</title><g transform="translate(120 160)"><ellipse cx="300" cy="190" rx="370" ry="118" transform="rotate(-28 300 190)" fill="none" stroke="#77A8C3" stroke-width="17"/>
+ <path d="M95 0H505A95 95 0 0 1 600 95V285A95 95 0 0 1 505 380H95A95 95 0 0 1 0 285V95A95 95 0 0 1 95 0Z" fill="#F1F8FA"/><path d="M410 380H505A95 95 0 0 0 600 285V190Z" fill="#4A90B6"/><g fill="#22506B"><rect x="123" y="125" width="90" height="130" rx="45"/><rect x="261" y="125" width="90" height="130" rx="45"/></g>
+ <path d="M-20 362C94 427 450 307 621 101" fill="none" stroke="#22506B" stroke-width="17" stroke-linecap="round"/>
+ <circle cx="545" cy="192" r="24" fill="#EF8D4E"/><path d="M628 23V61M609 42H647" stroke="#EF8D4E" stroke-width="10" stroke-linecap="round"/>
+ </g></svg>

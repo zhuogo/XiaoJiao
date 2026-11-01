@@ -1,0 +1,36 @@
+name: Validate source and assets
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate committed static distribution
+        run: python scripts/check_distribution.py
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+      - name: Typecheck
+        working-directory: frontend
+        run: npm run typecheck
+      - name: Build for a project subpath
+        working-directory: frontend
+        env:
+          VITE_BASE_PATH: /XiaoJiao/
+        run: npm run build
+      - name: Check deployment paths
+        run: python scripts/check_distribution.py --dist frontend/dist --base /XiaoJiao/

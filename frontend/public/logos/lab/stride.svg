@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="700" viewBox="0 0 840 700"><title>XiaoJiao stride</title><g transform="translate(120 120) rotate(-9 300 190)">
+ <path d="M154 353L125 451L55 451M399 355L465 422L526 393" fill="none" stroke="#323D31" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+ <path d="M15 213L-37 260M580 152L648 88" fill="none" stroke="#323D31" stroke-width="27" stroke-linecap="round"/>
+ <path d="M95 0H505A95 95 0 0 1 600 95V285A95 95 0 0 1 505 380H95A95 95 0 0 1 0 285V95A95 95 0 0 1 95 0Z" fill="#E9F08F"/><path d="M410 380H505A95 95 0 0 0 600 285V190Z" fill="#6D9561"/><g fill="#323D31"><rect x="123" y="125" width="90" height="130" rx="45"/><rect x="261" y="125" width="90" height="130" rx="45"/></g>
+ <path d="M-35 105H-73M-25 151H-92" stroke="#A9B87C" stroke-width="13" stroke-linecap="round"/>
+ </g></svg>

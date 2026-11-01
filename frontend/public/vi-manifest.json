@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": "1.0.0",
+  "signature": "卓越构建",
+  "pathBase": "Resolve file paths relative to this manifest URL",
+  "usage": "Public access does not grant a trademark or asset license. See BRAND-USAGE.md.",
+  "products": {
+    "draftgo": {
+      "name": "DraftGo",
+      "role": "开发底座",
+      "files": {
+        "logo.svg": {
+          "path": "vi/draftgo/logo.svg",
+          "bytes": 1486,
+          "sha256": "8ca35be5269109a80aeaa876d814cd4c82eaa86bf5a3c73a33086008e3089e92"
+        },
+        "logo.png": {
+          "path": "vi/draftgo/logo.png",
+          "bytes": 42941,
+          "sha256": "68aa1a5bd3ba0686287016c2619a3e4c3578e922558ddead5a9a9680388335a1"
+        },
+        "logo-mono.svg": {
+          "path": "vi/draftgo/logo-mono.svg",
+          "bytes": 1247,
+          "sha256": "4b934b060272064f6ea804066577cca9b65bfb8fe13d035060a0aa0cd618304a"
+        },
+        "logo-reverse.svg": {
+          "path": "vi/draftgo/logo-reverse.svg",
+          "bytes": 1438,
+          "sha256": "a302046976523374773edd7788a89a674300778daca2aa3fb6db56b7870183c4"
+        },
+        "horizontal.svg": {
+          "path": "vi/draftgo/horizontal.svg",
+          "bytes": 1840,
+          "sha256": "983b07c6e20cda7716b479eb124d52081ce4e5bd5adb6e7da9cf032157b79c1d"
+        },
+        "horizontal-mono.svg": {
+          "path": "vi/draftgo/horizontal-mono.svg",
+          "bytes": 1591,
+          "sha256": "7457591c3e015ea62a227cec7878baaad00518bb98c82f93756ca4c14f51cf7e"
+        },
+        "horizontal-reverse.svg": {
+          "path": "vi/draftgo/horizontal-reverse.svg",
+          "bytes": 1594,
+          "sha256": "f9ab973250cf524505e582d14576529f9dd5341b3d449543b1c61ed4ce227059"
+        },
+        "app.svg": {
+          "path": "vi/draftgo/app.svg",
+          "bytes": 1591,
+          "sha256": "460ccd592837f5b5f5cbb073fddc3eac3fb8f222332d1e957e96f3d5eee00e0f"
+        },
+        "icon-192.png": {
+          "path": "vi/draftgo/icon-192.png",
+          "bytes": 7719,
+          "sha256": "ecabc8661215eb3611a958d3eb7647cc478275f503f43c6025218dc775a92772"
+        },
+        "icon-512.png": {
+          "path": "vi/draftgo/icon-512.png",
+          "bytes": 24003,
+          "sha256": "17d5841728ead083901e93a861d44f0dba75315048abb16749850e939cc88d54"
+        },
+        "maskable-512.png": {
+          "path": "vi/draftgo/maskable-512.png",
+          "bytes": 14233,
+          "sha256": "8241d532b293e3c49a62c9b0c23155af1678d13cb9f7b3a41c42e965f5095bde"
+        },
+        "apple-touch-icon.png": {
+          "path": "vi/draftgo/apple-touch-icon.png",
+          "bytes": 7272,
+          "sha256": "3ee7d9f284b1e1c4d249c4e16e95d7d398669bd294009432a0f09dc2a34cc2ab"
+        },
+        "favicon.svg": {
+          "path": "vi/draftgo/favicon.svg",
+          "bytes": 1296,
+          "sha256": "7d99178798593f384ab8576730e824a413368d4be90e064b7972074caea151e9"
+        },
+        "favicon.ico": {
+          "path": "vi/draftgo/favicon.ico",
+          "bytes": 7835,
+          "sha256": "dc73833adaef8d3b28ff62455444ccf5b11202ee02127f77549a85d788b015c9"
+        },
+        "tokens.json": {
+          "path": "vi/draftgo/tokens.json",
+          "bytes": 1256,
+          "sha256": "5b474571949b43280a8578a8889433e251bcf6cb35b00797a5a642f9c704c243"
+        },
+        "variables.css": {
+          "path": "vi/draftgo/variables.css",
+          "bytes": 681,
+          "sha256": "8ab50cb0c6c51f4574585c4b80c68b67810c78eadd211150c3aaa201cab5067f"
+        },
+        "package": {
+          "path": "logos/vi/draftgo-vi-assets.zip",
+          "bytes": 2465854,
+          "sha256": "c3d3af07a6e3d88035cba2fd936ce8bfff9416f9c05fa74f1123545859ce87d4"
+        },
+        "guidelines": {
+          "path": "logos/vi/draftgo-vi-guidelines.pdf",
+          "bytes": 645903,
+          "sha256": "485355e15ce0462b012009a312fa53f49f39e4bcde3514a3ebb7779310085027"
+        }
+      }
+    },
+    "routergo": {
+      "name": "RouterGo",
+      "role": "模型连接",
+      "files": {
+        "logo.svg": {
+          "path": "vi/routergo/logo.svg",
+          "bytes": 1149,
+          "sha256": "0532531d86a82bff5149520e38d86aae54f6ecec8ef7c47bc8887d854713d2b8"
+        },
+        "logo.png": {
+          "path": "vi/routergo/logo.png",
+          "bytes": 23377,
+          "sha256": "f252fbd5098dc3dc5776127f07711b5edcda7bccc23ff9be130f7bcec99771e6"
+        },
+        "logo-mono.svg": {
+          "path": "vi/routergo/logo-mono.svg",
+          "bytes": 1486,
+          "sha256": "d15e1a2378462cbd8ee147f493c1733d5a4ddc8adaeb5ff27e5170b3b545ff61"
+        },
+        "logo-reverse.svg": {
+          "path": "vi/routergo/logo-reverse.svg",
+          "bytes": 1689,
+          "sha256": "b71712d7478af0738347444733dc630b27d1fc7bbd5976cd5eff5a856c03da00"
+        },
+        "horizontal.svg": {
+          "path": "vi/routergo/horizontal.svg",
+          "bytes": 1486,
+          "sha256": "6fde9fd9b7934113eb25384641aeab9f5e584d5214467cabd782ee353dc8b3b0"
+        },
+        "horizontal-mono.svg": {
+          "path": "vi/routergo/horizontal-mono.svg",
+          "bytes": 1844,
+          "sha256": "c30168eb7eb556c75a5b53bd089c9e8c7a84e85aa7f1c0b624a3d6212b673016"
+        },
+        "horizontal-reverse.svg": {
+          "path": "vi/routergo/horizontal-reverse.svg",
+          "bytes": 1847,
+          "sha256": "30ed9d2ff25ee68fbe0dd5fbb68b21ae67e0e636329deda29fc30d4c791ff7d1"
+        },
+        "app.svg": {
+          "path": "vi/routergo/app.svg",
+          "bytes": 1254,
+          "sha256": "c3cfd83a4261e805ebe9173e7abfe96760134412fdc24591fcd83465ccbb067e"
+        },
+        "icon-192.png": {
+          "path": "vi/routergo/icon-192.png",
+          "bytes": 5123,
+          "sha256": "c8a13b4918cc999d52e641969128a8b8b1f1fe01ef519bd07860ab01e29054fa"
+        },
+        "icon-512.png": {
+          "path": "vi/routergo/icon-512.png",
+          "bytes": 15126,
+          "sha256": "b6e62bee644796f3e39b696c09594ee2c31030e206bd3f1c0c985dd455f8ab36"
+        },
+        "maskable-512.png": {
+          "path": "vi/routergo/maskable-512.png",
+          "bytes": 8768,
+          "sha256": "00ea57c5dd4718483aecfce8e08934a6a5c4af424748dfb1cb26f7d6b038f107"
+        },
+        "apple-touch-icon.png": {
+          "path": "vi/routergo/apple-touch-icon.png",
+          "bytes": 4845,
+          "sha256": "c63fcd178905101725037935fd6c046bfae3b51f82216d91be5e562ae56eafc7"
+        },
+        "favicon.svg": {
+          "path": "vi/routergo/favicon.svg",
+          "bytes": 1001,
+          "sha256": "6ae1c283aa5086c5f57c0be8fec9ea618c1891d3dabc74bbb65e25c8d87a0ca2"
+        },
+        "favicon.ico": {
+          "path": "vi/routergo/favicon.ico",
+          "bytes": 7308,
+          "sha256": "3b6f9effb8dcb91d00b7db9903fbdd6cf2b65a50ebce8766162863170c555191"
+        },
+        "tokens.json": {
+          "path": "vi/routergo/tokens.json",
+          "bytes": 1257,
+          "sha256": "541adc07d169ca1844af0e15caa49ed76b094f88de8a02a53d867cc00f2ec696"
+        },
+        "variables.css": {
+          "path": "vi/routergo/variables.css",
+          "bytes": 700,
+          "sha256": "cbc701c39c858cefd84bc89daff13b542b819e478ae86e133448da242cd080f8"
+        },
+        "package": {
+          "path": "logos/vi/routergo-vi-assets.zip",
+          "bytes": 2046674,
+          "sha256": "27e30fa2528bcc372b5abd795540f7d9ede66ad4398fa299be1841fda467881a"
+        },
+        "guidelines": {
+          "path": "logos/vi/routergo-vi-guidelines.pdf",
+          "bytes": 624188,
+          "sha256": "40ed301015b85924efbe042ae8501a9d763565b47dd10956bce39bb5110fb3c2"
+        }
+      }
+    },
+    "selfgo": {
+      "name": "SelfGo",
+      "role": "思考画布",
+      "files": {
+        "logo.svg": {
+          "path": "vi/selfgo/logo.svg",
+          "bytes": 1132,
+          "sha256": "8f689cd1883064e1f5d70e53f48226300ff12ddf76ad33d978af57db44ea5359"
+        },
+        "logo.png": {
+          "path": "vi/selfgo/logo.png",
+          "bytes": 20872,
+          "sha256": "165d1f2e63031028069e504dc40569a64a506a8e3cfe1e5dbcd493893b057b95"
+        },
+        "logo-mono.svg": {
+          "path": "vi/selfgo/logo-mono.svg",
+          "bytes": 1359,
+          "sha256": "06425e689ab943d6685926805c6d2c042a9e33caa479ee7459fb90c8bdd1de90"
+        },
+        "logo-reverse.svg": {
+          "path": "vi/selfgo/logo-reverse.svg",
+          "bytes": 1562,
+          "sha256": "17f3122af671a5f73d597386d2496200b81708a9f94a459c77cdd03058ab3306"
+        },
+        "horizontal.svg": {
+          "path": "vi/selfgo/horizontal.svg",
+          "bytes": 1467,
+          "sha256": "0e7ebeb1a0d6661bd2990a5cc4a6e2ff94d42434c13cbfc6a02f392f9c9d5f5d"
+        },
+        "horizontal-mono.svg": {
+          "path": "vi/selfgo/horizontal-mono.svg",
+          "bytes": 1714,
+          "sha256": "5d8215be5b1c8ad8136e8b5264aaf46ba33cb2a34dfaffe654523c30d751970a"
+        },
+        "horizontal-reverse.svg": {
+          "path": "vi/selfgo/horizontal-reverse.svg",
+          "bytes": 1717,
+          "sha256": "0887540640c478a786d0b5e22752a7cc2551d509b4fb17a2e5248b6f5e72411e"
+        },
+        "app.svg": {
+          "path": "vi/selfgo/app.svg",
+          "bytes": 1225,
+          "sha256": "f776903fe3c18bba67dbfa9b474b9589026649380c2dd6b1022ecdab7f2d3606"
+        },
+        "icon-192.png": {
+          "path": "vi/selfgo/icon-192.png",
+          "bytes": 4935,
+          "sha256": "8ceefdecd63f63ee1537cceac6937d623c54a38f88dcb1b77ce1c9daa5b2fe85"
+        },
+        "icon-512.png": {
+          "path": "vi/selfgo/icon-512.png",
+          "bytes": 13989,
+          "sha256": "d0e2a5ad36717d4737f093421c8302d65e8a3a59e751ce4ac72c31381f5e9a25"
+        },
+        "maskable-512.png": {
+          "path": "vi/selfgo/maskable-512.png",
+          "bytes": 8307,
+          "sha256": "5639a5b25fd904cb4aeb514916b78f960b70f2dfaca40566dcec514115ebbd8e"
+        },
+        "apple-touch-icon.png": {
+          "path": "vi/selfgo/apple-touch-icon.png",
+          "bytes": 4633,
+          "sha256": "a8a98294c2e401ff15efbe0accea3c3522874abfdaba401b014ea4b7083f8370"
+        },
+        "favicon.svg": {
+          "path": "vi/selfgo/favicon.svg",
+          "bytes": 938,
+          "sha256": "460a7ea1f8c997011ef021634f50b1280751be1026fbe764c1d0a8812470ae58"
+        },
+        "favicon.ico": {
+          "path": "vi/selfgo/favicon.ico",
+          "bytes": 6816,
+          "sha256": "5b77e765680dde9b9f119e0ac7dec44b3a0aec2a95e5e85636d2169660180dae"
+        },
+        "tokens.json": {
+          "path": "vi/selfgo/tokens.json",
+          "bytes": 1254,
+          "sha256": "6aae67fbf4c8c34df0632ef147fa0b27803a7a5166a41193030f5d3fc315cc48"
+        },
+        "variables.css": {
+          "path": "vi/selfgo/variables.css",
+          "bytes": 662,
+          "sha256": "5f6364ab6c1179fd77e70be33aa8921079c0d02d1601a22b9a0df9420360e9a4"
+        },
+        "package": {
+          "path": "logos/vi/selfgo-vi-assets.zip",
+          "bytes": 1947018,
+          "sha256": "b7fa01e4bef8e3572a37e6254c67e1bcdd112d62a5079d2912011e1c82e6cfd1"
+        },
+        "guidelines": {
+          "path": "logos/vi/selfgo-vi-guidelines.pdf",
+          "bytes": 608369,
+          "sha256": "1d6c31ec63b6d9cc8d35ce51d0996f4687220f244e19a72637e5f9429822d108"
+        }
+      }
+    },
+    "benchgo": {
+      "name": "BenchGo",
+      "role": "全天候助手",
+      "files": {
+        "logo.svg": {
+          "path": "vi/benchgo/logo.svg",
+          "bytes": 1214,
+          "sha256": "c3b2e9b7b21d2e02523255a8034278a30bec6a9e8794e7e8f2f162728ed5e8e5"
+        },
+        "logo.png": {
+          "path": "vi/benchgo/logo.png",
+          "bytes": 16642,
+          "sha256": "de943dea0c944e389c9e60d79ba9f4b144b2e26bddf051667a58d9a66caeea28"
+        },
+        "logo-mono.svg": {
+          "path": "vi/benchgo/logo-mono.svg",
+          "bytes": 1326,
+          "sha256": "60e4aff8cbb694c4af54946becf5cddaacd3339bdc275a01e6db248eecdd0329"
+        },
+        "logo-reverse.svg": {
+          "path": "vi/benchgo/logo-reverse.svg",
+          "bytes": 1529,
+          "sha256": "5424aeedf49895ec5642eec2730436798826e735f8f061c8c06519752dfce81d"
+        },
+        "horizontal.svg": {
+          "path": "vi/benchgo/horizontal.svg",
+          "bytes": 1550,
+          "sha256": "141658496688ac6dd48b55d23467bb90d3b7b29bf21231f2fbfefc2a5d83ce98"
+        },
+        "horizontal-mono.svg": {
+          "path": "vi/benchgo/horizontal-mono.svg",
+          "bytes": 1683,
+          "sha256": "2c1c8841f9eed6bf6cf1ae353ee7675cb7f246af5cffb5191eae55f93d9d59de"
+        },
+        "horizontal-reverse.svg": {
+          "path": "vi/benchgo/horizontal-reverse.svg",
+          "bytes": 1686,
+          "sha256": "50e93eb717c38484980192d7a2b320cb42e16269c222e383e727779f02aad82c"
+        },
+        "app.svg": {
+          "path": "vi/benchgo/app.svg",
+          "bytes": 1307,
+          "sha256": "0c820b8ff60ecbd2300f50cd3153cc4de811f3b2c4c3fe5508d94bc385e39702"
+        },
+        "icon-192.png": {
+          "path": "vi/benchgo/icon-192.png",
+          "bytes": 4469,
+          "sha256": "3abf64e1257143f2ffd5a4cdcbc23219ad69436d73eeaeed64f7db60e6554ec5"
+        },
+        "icon-512.png": {
+          "path": "vi/benchgo/icon-512.png",
+          "bytes": 13007,
+          "sha256": "fc00b52c9366dca499455c0caec22d8c3b407d166dc844080186f80ee34b9b46"
+        },
+        "maskable-512.png": {
+          "path": "vi/benchgo/maskable-512.png",
+          "bytes": 7429,
+          "sha256": "4eaeaace68b20b3ca8832235b72ca00acaee25ceefd3914684ddf7a1f2cd811b"
+        },
+        "apple-touch-icon.png": {
+          "path": "vi/benchgo/apple-touch-icon.png",
+          "bytes": 4156,
+          "sha256": "468ff1a42424dde30d7ecddceb4e7a85981aba81fcde774cb2f6d4b485b11921"
+        },
+        "favicon.svg": {
+          "path": "vi/benchgo/favicon.svg",
+          "bytes": 659,
+          "sha256": "6268396f51d555bb96ec39e467b74158e9b55dcfc385c1d7066839ac14a5c397"
+        },
+        "favicon.ico": {
+          "path": "vi/benchgo/favicon.ico",
+          "bytes": 5621,
+          "sha256": "548db14cea8d3284df287c51fef18ee799329391a1a9796f50f91239e0f690e1"
+        },
+        "tokens.json": {
+          "path": "vi/benchgo/tokens.json",
+          "bytes": 1257,
+          "sha256": "e8d6389463275f10f9e27f6f4fcd91d3e758f1c9c9f7616ce241926abe92e7f3"
+        },
+        "variables.css": {
+          "path": "vi/benchgo/variables.css",
+          "bytes": 681,
+          "sha256": "c02ff55eee6b81a465470788e5dd480222250352e4d74eddd265359b6594e1a8"
+        },
+        "package": {
+          "path": "logos/vi/benchgo-vi-assets.zip",
+          "bytes": 1886392,
+          "sha256": "d55c926b6a5c92d56c38ad38d2f2a63287af61a07babe03080e7831d88a19079"
+        },
+        "guidelines": {
+          "path": "logos/vi/benchgo-vi-guidelines.pdf",
+          "bytes": 606346,
+          "sha256": "9e05a3985089a24a8a56aecccd9d8f344228d0f62a815b8d62658d2016c9ab20"
+        }
+      }
+    }
+  },
+  "familyPackage": {
+    "path": "logos/vi/go-family-vi-assets.zip",
+    "bytes": 8345872,
+    "sha256": "d947d102963d1b94b992118b8a9406d953fd29c6e7256e0052c556d5945557cf"
+  }
+}

@@ -1,0 +1,21 @@
+:root {
+  --routergo-primary: #B94332;
+  --routergo-accent: #F08D70;
+  --routergo-paper: #FFF6EE;
+  --routergo-surface: #F6EAE3;
+  --routergo-ink: #351F1B;
+  --routergo-onPrimary: #FFFFFF;
+  --routergo-font: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  --routergo-display-size: 48px;
+  --routergo-display-line-height: 1.2;
+  --routergo-display-weight: 600;
+  --routergo-heading-size: 32px;
+  --routergo-heading-line-height: 1.3;
+  --routergo-heading-weight: 600;
+  --routergo-body-size: 16px;
+  --routergo-body-line-height: 1.6;
+  --routergo-body-weight: 400;
+  --routergo-caption-size: 14px;
+  --routergo-caption-line-height: 1.5;
+  --routergo-caption-weight: 400;
+}

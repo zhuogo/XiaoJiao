@@ -1,0 +1,42 @@
+[
+  {
+    "id": "draftgo",
+    "name": "DraftGo",
+    "version": "1.0",
+    "files": 85,
+    "bytes": 2465854,
+    "sha256": "c3d3af07a6e3d88035cba2fd936ce8bfff9416f9c05fa74f1123545859ce87d4",
+    "bundle": "/logos/vi/draftgo-vi-assets.zip",
+    "guide": "/logos/vi/draftgo-vi-guidelines.pdf"
+  },
+  {
+    "id": "routergo",
+    "name": "RouterGo",
+    "version": "1.0",
+    "files": 85,
+    "bytes": 2046674,
+    "sha256": "27e30fa2528bcc372b5abd795540f7d9ede66ad4398fa299be1841fda467881a",
+    "bundle": "/logos/vi/routergo-vi-assets.zip",
+    "guide": "/logos/vi/routergo-vi-guidelines.pdf"
+  },
+  {
+    "id": "selfgo",
+    "name": "SelfGo",
+    "version": "1.0",
+    "files": 85,
+    "bytes": 1947018,
+    "sha256": "b7fa01e4bef8e3572a37e6254c67e1bcdd112d62a5079d2912011e1c82e6cfd1",
+    "bundle": "/logos/vi/selfgo-vi-assets.zip",
+    "guide": "/logos/vi/selfgo-vi-guidelines.pdf"
+  },
+  {
+    "id": "benchgo",
+    "name": "BenchGo",
+    "version": "1.0",
+    "files": 85,
+    "bytes": 1886392,
+    "sha256": "d55c926b6a5c92d56c38ad38d2f2a63287af61a07babe03080e7831d88a19079",
+    "bundle": "/logos/vi/benchgo-vi-assets.zip",
+    "guide": "/logos/vi/benchgo-vi-guidelines.pdf"
+  }
+]

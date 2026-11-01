@@ -1,0 +1,43 @@
+{
+  "routergo": {
+    "name": "RouterGo",
+    "concept": "专注连接",
+    "color": "#B94332",
+    "accent": "#F08D70",
+    "paper": "#FFF6EE",
+    "eye": "#351F1B",
+    "background": "#F6EAE3",
+    "app_background": "#F6EAE3",
+    "dark": "#351F1B",
+    "expression": "专注",
+    "domain": "routergo.cn"
+  },
+  "selfgo": {
+    "name": "SelfGo",
+    "concept": "轻松整理",
+    "color": "#265B4C",
+    "accent": "#80A68C",
+    "paper": "#F1F3E7",
+    "rear": "#A8BEA3",
+    "background": "#EDF1E8",
+    "app_background": "#DBE6D6",
+    "dark": "#193E33",
+    "expression": "轻笑",
+    "domain": "selfgo.cn"
+  },
+  "benchgo": {
+    "group": "original",
+    "color": "#F3EBDF",
+    "accent": "#D44A36",
+    "paper": "#222222",
+    "background": "#C8CAC7",
+    "dark": "#222222",
+    "app_background": "#C8CAC7",
+    "syntax": "#D44A36",
+    "muted": "#B6B1A7",
+    "wordmark": "#222222",
+    "name": "BenchGo",
+    "concept": "代码伙伴",
+    "domain": "benchgo.cn"
+  }
+}
